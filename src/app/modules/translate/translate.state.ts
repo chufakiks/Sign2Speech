@@ -10,7 +10,6 @@ import {
   SetSignedLanguageVideo,
   SetSignWritingText,
   SetSpokenLanguageText,
-  ShareSignedLanguageVideo,
   SuggestAlternativeText,
   UploadPoseFile,
 } from './translate.actions';
@@ -206,32 +205,6 @@ export class TranslateState implements NgxsOnInit {
     } catch (e) {
       console.error(e);
       alert(e.message);
-    }
-  }
-
-  @Action(ShareSignedLanguageVideo)
-  async shareSignedLanguageVideo({getState}: StateContext<TranslateStateModel>): Promise<void> {
-    const {signedLanguageVideo} = getState();
-
-    const data = await fetch(signedLanguageVideo);
-    let blob = await data.blob();
-    const ext = blob.type.split('/').pop();
-
-    const file = new File([blob], 'video.' + ext, {type: blob.type});
-
-    if (!('share' in navigator)) {
-      alert(`Share functionality is not available`);
-      return;
-    }
-
-    const files: File[] = [file];
-    const url = window.location.href;
-    const title = 'Signed Language Video for text';
-
-    if ('canShare' in navigator && (navigator as any).canShare({files})) {
-      await navigator.share({files} as ShareData);
-    } else {
-      await navigator.share({text: title, title, url});
     }
   }
 

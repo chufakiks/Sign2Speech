@@ -45,10 +45,6 @@ export class CopySpokenLanguageText {
   static readonly type = '[Translate] Copy Spoken Language Text';
 }
 
-export class ShareSignedLanguageVideo {
-  static readonly type = '[Translate] Share Signed Language Video';
-}
-
 export class DownloadSignedLanguageVideo {
   static readonly type = '[Translate] Download Signed Language Video';
 }
