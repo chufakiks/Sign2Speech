@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {SettingsOfflineComponent} from '../settings-offline/settings-offline.component';
-import {SettingsAboutComponent} from '../settings-about/settings-about.component';
 import {SettingsVoiceInputComponent} from '../settings-voice-input/settings-voice-input.component';
 import {SettingsVoiceOutputComponent} from '../settings-voice-output/settings-voice-output.component';
 import {SettingsAppearanceComponent} from '../settings-appearance/settings-appearance.component';
@@ -18,7 +17,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
-import {airplane, informationCircle, mic, personCircle, volumeMedium} from 'ionicons/icons';
+import {airplane, mic, personCircle, volumeMedium} from 'ionicons/icons';
 
 interface Page {
   path: string;
@@ -52,12 +51,6 @@ interface PagesGroup {
 export class SettingsMenuComponent {
   groups: PagesGroup[] = [
     {
-      name: 'support',
-      pages: [
-        {path: 'about', icon: 'information-circle', component: SettingsAboutComponent},
-      ],
-    },
-    {
       name: 'voice',
       pages: [
         {path: 'input', icon: 'mic', component: SettingsVoiceInputComponent},
@@ -74,6 +67,6 @@ export class SettingsMenuComponent {
   ];
 
   constructor() {
-    addIcons({informationCircle, mic, volumeMedium, airplane, personCircle});
+    addIcons({mic, volumeMedium, airplane, personCircle});
   }
 }

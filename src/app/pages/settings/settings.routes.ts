@@ -4,19 +4,17 @@ import {SettingsAppearanceComponent} from './settings-appearance/settings-appear
 import {SettingsOfflineComponent} from './settings-offline/settings-offline.component';
 import {SettingsVoiceOutputComponent} from './settings-voice-output/settings-voice-output.component';
 import {SettingsVoiceInputComponent} from './settings-voice-input/settings-voice-input.component';
-import {SettingsAboutComponent} from './settings-about/settings-about.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: SettingsPageComponent,
     children: [
-      {path: 'about', component: SettingsAboutComponent},
       {path: 'input', component: SettingsVoiceInputComponent},
       {path: 'output', component: SettingsVoiceOutputComponent},
       {path: 'offline', component: SettingsOfflineComponent},
       {path: 'appearance', component: SettingsAppearanceComponent},
-      {path: '', redirectTo: 'about', pathMatch: 'full'},
+      {path: '', redirectTo: 'input', pathMatch: 'full'},
     ],
   },
 ];
