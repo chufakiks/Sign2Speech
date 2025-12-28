@@ -19,7 +19,6 @@ import {SetVideo, StartCamera, StopVideo} from '../../core/modules/ngxs/store/vi
 import {catchError, EMPTY, filter, Observable, of} from 'rxjs';
 import {PoseViewerSetting} from '../settings/settings.state';
 import {tap} from 'rxjs/operators';
-import {Capacitor} from '@capacitor/core';
 import {SignWritingService} from '../sign-writing/sign-writing.service';
 import {SignWritingTranslationService} from './signwriting-translation.service';
 import type {Pose} from 'pose-format';
@@ -203,49 +202,10 @@ export class TranslateState implements NgxsOnInit {
     const {spokenLanguageText} = getState();
 
     try {
-      const {Clipboard} = await import(/* webpackChunkName: "@capacitor/clipboard" */ '@capacitor/clipboard');
-      await Clipboard.write({string: spokenLanguageText});
+      await navigator.clipboard.writeText(spokenLanguageText);
     } catch (e) {
       console.error(e);
       alert(e.message);
-    }
-  }
-
-  async shareNative(file: File) {
-    // Save video to file system
-    const {Directory, Filesystem} = await import(
-      /* webpackChunkName: "@capacitor/filesystem" */ '@capacitor/filesystem'
-    );
-    const {blobToBase64} = await import(/* webpackChunkName: "base64-blob" */ 'base64-blob');
-
-    const data = await blobToBase64(file);
-    const fileOptions = {directory: Directory.Cache, path: 'video.mp4'};
-    await Filesystem.writeFile({...fileOptions, data});
-    const {uri} = await Filesystem.getUri(fileOptions);
-
-    // Share video
-    const {Share} = await import(/* webpackChunkName: "@capacitor/share" */ '@capacitor/share');
-    await Share.share({url: uri});
-  }
-
-  async shareWeb(file: File) {
-    if (!('share' in navigator)) {
-      // For example in non-HTTPS on iOS
-      alert(`Share functionality is not available`);
-      return;
-    }
-
-    const files: File[] = [file];
-
-    const url = window.location.href;
-    const title = 'Signed Language Video for text';
-
-    if ('canShare' in navigator && (navigator as any).canShare({files})) {
-      // Apps like WhatsApp only support sharing a single item
-      await navigator.share({files} as ShareData);
-    } else {
-      // TODO convert the video to GIF, try to share the GIF.
-      await navigator.share({text: title, title, url});
     }
   }
 
@@ -259,11 +219,20 @@ export class TranslateState implements NgxsOnInit {
 
     const file = new File([blob], 'video.' + ext, {type: blob.type});
 
-    if (Capacitor.isNativePlatform()) {
-      return this.shareNative(file);
+    if (!('share' in navigator)) {
+      alert(`Share functionality is not available`);
+      return;
     }
 
-    return this.shareWeb(file);
+    const files: File[] = [file];
+    const url = window.location.href;
+    const title = 'Signed Language Video for text';
+
+    if ('canShare' in navigator && (navigator as any).canShare({files})) {
+      await navigator.share({files} as ShareData);
+    } else {
+      await navigator.share({text: title, title, url});
+    }
   }
 
   @Action(DownloadSignedLanguageVideo)

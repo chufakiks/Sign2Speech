@@ -1,9 +1,7 @@
 import {AfterViewInit, Component, inject} from '@angular/core';
 import {TranslocoService} from '@jsverse/transloco';
 import {tap} from 'rxjs/operators';
-import {Capacitor} from '@capacitor/core';
 import {languageCodeNormalizer} from './core/modules/transloco/languages';
-import {Meta} from '@angular/platform-browser';
 import {IonApp, IonRouterOutlet} from '@ionic/angular/standalone';
 import {getUrlParams} from './core/helpers/url';
 import {MediaMatcher} from '@angular/cdk/layout';
@@ -15,7 +13,6 @@ import {MediaMatcher} from '@angular/cdk/layout';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent implements AfterViewInit {
-  private meta = inject(Meta);
   private transloco = inject(TranslocoService);
   private mediaMatcher = inject(MediaMatcher);
 
@@ -25,23 +22,9 @@ export class AppComponent implements AfterViewInit {
     this.listenLanguageChange();
     this.checkURLEmbedding();
     this.updateToolbarColor();
-    this.setPageKeyboardClass();
   }
 
-  async ngAfterViewInit() {
-    if (Capacitor.isNativePlatform()) {
-      this.meta.updateTag({
-        name: 'viewport',
-        content:
-          'minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1.0, viewport-fit=cover, width=device-width',
-      });
-
-      const {SplashScreen} = await import(
-        /* webpackChunkName: "@capacitor/splash-screen" */ '@capacitor/splash-screen'
-      );
-      await SplashScreen.hide();
-    }
-
+  ngAfterViewInit() {
     this.initCookieConsent();
   }
 
@@ -160,16 +143,5 @@ export class AppComponent implements AfterViewInit {
     if (urlParam !== null) {
       document.body.classList.add('embed');
     }
-  }
-
-  async setPageKeyboardClass() {
-    if (!Capacitor.isNativePlatform()) {
-      return;
-    }
-    const {Keyboard} = await import(/* webpackChunkName: "@capacitor/keyboard" */ '@capacitor/keyboard');
-    const html = document.documentElement;
-    const className = 'keyboard-is-open';
-    Keyboard.addListener('keyboardWillShow', () => html.classList.add(className));
-    Keyboard.addListener('keyboardWillHide', () => html.classList.remove(className));
   }
 }
