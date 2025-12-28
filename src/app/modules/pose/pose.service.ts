@@ -1,7 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import * as drawing from '@mediapipe/drawing_utils/drawing_utils.js';
 import {EMPTY_LANDMARK, EstimatedPose, PoseLandmark} from './pose.state';
-import {GoogleAnalyticsService} from '../../core/modules/google-analytics/google-analytics.service';
 import {MediapipeHolisticService} from '../../core/services/holistic.service';
 
 const IGNORED_BODY_LANDMARKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17, 18, 19, 20, 21, 22];
@@ -10,7 +9,6 @@ const IGNORED_BODY_LANDMARKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17, 18
   providedIn: 'root',
 })
 export class PoseService {
-  private ga = inject(GoogleAnalyticsService);
   private holistic = inject(MediapipeHolisticService);
 
   model?: any;
@@ -47,40 +45,34 @@ export class PoseService {
 
     await this.holistic.load();
 
-    await this.ga.trace('pose', 'load', async () => {
-      this.model = new this.holistic.Holistic({locateFile: file => `assets/models/holistic/${file}`});
+    this.model = new this.holistic.Holistic({locateFile: file => `assets/models/holistic/${file}`});
 
-      this.model.setOptions({
-        upperBodyOnly: false,
-        modelComplexity: 1,
-      });
+    this.model.setOptions({
+      upperBodyOnly: false,
+      modelComplexity: 1,
+    });
 
-      await this.model.initialize();
+    await this.model.initialize();
 
-      // Send an empty frame, to force the mediapipe computation graph to load
-      const frame = document.createElement('canvas');
-      frame.width = 256;
-      frame.height = 256;
-      await this.model.send({image: frame});
-      frame.remove();
+    // Send an empty frame, to force the mediapipe computation graph to load
+    const frame = document.createElement('canvas');
+    frame.width = 256;
+    frame.height = 256;
+    await this.model.send({image: frame});
+    frame.remove();
 
-      // Track following results
-      this.model.onResults(results => {
-        for (const callback of this.onResultsCallbacks) {
-          callback(results);
-        }
-      });
+    // Track following results
+    this.model.onResults(results => {
+      for (const callback of this.onResultsCallbacks) {
+        callback(results);
+      }
     });
   }
 
   async predict(video: HTMLVideoElement | HTMLImageElement): Promise<void> {
     await this.load();
-
-    const frameType = this.isFirstFrame ? 'first-frame' : 'frame';
-    await this.ga.trace('pose', frameType, () => {
-      this.isFirstFrame = false;
-      return this.model.send({image: video});
-    });
+    this.isFirstFrame = false;
+    await this.model.send({image: video});
   }
 
   drawBody(landmarks: PoseLandmark[], ctx: CanvasRenderingContext2D): void {

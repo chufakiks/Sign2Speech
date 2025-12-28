@@ -1,16 +1,11 @@
 import {AfterViewInit, Component, inject} from '@angular/core';
 import {TranslocoService} from '@jsverse/transloco';
-import {filter, tap} from 'rxjs/operators';
-import {firstValueFrom} from 'rxjs';
-import {NavigationEnd, Router} from '@angular/router';
-import {GoogleAnalyticsService} from './core/modules/google-analytics/google-analytics.service';
+import {tap} from 'rxjs/operators';
 import {Capacitor} from '@capacitor/core';
 import {languageCodeNormalizer} from './core/modules/transloco/languages';
 import {Meta} from '@angular/platform-browser';
 import {IonApp, IonRouterOutlet} from '@ionic/angular/standalone';
 import {getUrlParams} from './core/helpers/url';
-import * as CookieConsent from 'vanilla-cookieconsent';
-import {ConsentStatus, ConsentType, FirebaseAnalytics} from '@capacitor-firebase/analytics';
 import {MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
@@ -21,16 +16,13 @@ import {MediaMatcher} from '@angular/cdk/layout';
 })
 export class AppComponent implements AfterViewInit {
   private meta = inject(Meta);
-  private ga = inject(GoogleAnalyticsService);
   private transloco = inject(TranslocoService);
-  private router = inject(Router);
   private mediaMatcher = inject(MediaMatcher);
 
   urlParams = getUrlParams();
 
   constructor() {
     this.listenLanguageChange();
-    this.logRouterNavigation();
     this.checkURLEmbedding();
     this.updateToolbarColor();
     this.setPageKeyboardClass();
@@ -115,22 +107,6 @@ export class AppComponent implements AfterViewInit {
           flipButtons: false,
         },
       },
-      onConsent: ({cookie}) => {
-        console.log('Consent given:', cookie);
-        const categories: {[key: string]: ConsentType[]} = {
-          functionality: [ConsentType.FunctionalityStorage, ConsentType.PersonalizationStorage],
-          analytics: [ConsentType.AnalyticsStorage],
-          marketing: [ConsentType.AdStorage, ConsentType.AdPersonalization, ConsentType.AdUserData],
-        };
-        for (const [category, types] of Object.entries(categories)) {
-          const consent: ConsentStatus = cookie.categories.includes(category)
-            ? ConsentStatus.Granted
-            : ConsentStatus.Denied;
-          for (const type of types) {
-            FirebaseAnalytics.setConsent({type, status: consent});
-          }
-        }
-      },
       categories: {
         necessary: {
           enabled: true, // this category is enabled by default
@@ -139,25 +115,6 @@ export class AppComponent implements AfterViewInit {
         functionality: {
           enabled: true,
         },
-        analytics: {
-          autoClear: {
-            cookies: [
-              {
-                name: /^_ga/, // regex: match all cookies starting with '_ga'
-              },
-              {
-                name: '_gid', // string: exact cookie name
-              },
-            ],
-          },
-          // https://cookieconsent.orestbida.com/reference/configuration-reference.html#category-services
-          services: {
-            ga: {
-              label: 'Google Analytics',
-            },
-          },
-        },
-        marketing: {},
       },
 
       language: {
@@ -167,22 +124,6 @@ export class AppComponent implements AfterViewInit {
         },
       },
     });
-  }
-
-  logRouterNavigation() {
-    const isLanguageLoaded = firstValueFrom(
-      this.transloco.events$.pipe(filter(e => e.type === 'translationLoadSuccess'))
-    );
-
-    this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        tap(async (event: NavigationEnd) => {
-          await isLanguageLoaded; // Before triggering page view, wait for language to be loaded
-          await this.ga.setCurrentScreen(event.urlAfterRedirects);
-        })
-      )
-      .subscribe();
   }
 
   listenLanguageChange() {
