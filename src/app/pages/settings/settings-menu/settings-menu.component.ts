@@ -3,7 +3,6 @@ import {SettingsOfflineComponent} from '../settings-offline/settings-offline.com
 import {SettingsAboutComponent} from '../settings-about/settings-about.component';
 import {SettingsVoiceInputComponent} from '../settings-voice-input/settings-voice-input.component';
 import {SettingsVoiceOutputComponent} from '../settings-voice-output/settings-voice-output.component';
-import {SettingsFeedbackComponent} from '../settings-feedback/settings-feedback.component';
 import {SettingsAppearanceComponent} from '../settings-appearance/settings-appearance.component';
 import {TranslocoDirective} from '@jsverse/transloco';
 import {
@@ -19,7 +18,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
-import {airplane, chatbubbles, informationCircle, mic, personCircle, volumeMedium} from 'ionicons/icons';
+import {airplane, informationCircle, mic, personCircle, volumeMedium} from 'ionicons/icons';
 
 interface Page {
   path: string;
@@ -55,7 +54,6 @@ export class SettingsMenuComponent {
     {
       name: 'support',
       pages: [
-        {path: 'feedback', icon: 'chatbubbles', component: SettingsFeedbackComponent},
         {path: 'about', icon: 'information-circle', component: SettingsAboutComponent},
       ],
     },
@@ -76,6 +74,6 @@ export class SettingsMenuComponent {
   ];
 
   constructor() {
-    addIcons({chatbubbles, informationCircle, mic, volumeMedium, airplane, personCircle});
+    addIcons({informationCircle, mic, volumeMedium, airplane, personCircle});
   }
 }
