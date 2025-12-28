@@ -22,7 +22,6 @@ import {tap} from 'rxjs/operators';
 import {Capacitor} from '@capacitor/core';
 import {SignWritingService} from '../sign-writing/sign-writing.service';
 import {SignWritingTranslationService} from './signwriting-translation.service';
-import {LanguageDetectionService} from './language-detection/language-detection.service';
 import type {Pose} from 'pose-format';
 import {EstimatedPose} from '../pose/pose.state';
 import {StoreFramePose} from '../pose/pose.actions';
@@ -81,7 +80,6 @@ export class TranslateState implements NgxsOnInit {
   private service = inject(TranslationService);
   private swService = inject(SignWritingTranslationService);
   private poseService = inject(PoseService);
-  private languageDetectionService = inject(LanguageDetectionService);
 
   poseViewerSetting$!: Observable<PoseViewerSetting>;
   pose$!: Observable<EstimatedPose>;
