@@ -55,7 +55,6 @@
     "@mediapipe/holistic": "0.5.1675471629",
     "@mediapipe/tasks-text": "0.10.21",
     "@ngxs/store": "20.1.0",
-    "@sign-mt/browsermt": "0.2.3",
     "@sign-mt/i18n": "git://github.com/sign/i18n.git",
     "@sutton-signwriting/font-ttf": "1.6.0",
     "@sutton-signwriting/sgnw-components": "1.1.0",
