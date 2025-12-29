@@ -1,69 +1,69 @@
-@use '../../../../theme/breakpoints' as breakpoints;
-
 :host {
   display: flex;
   width: 100%;
   height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
 
 .interface {
   display: grid;
+  grid-template-columns: 3fr 2fr;
   width: 100%;
-  grid-template-areas: 'signed signwriting spoken';
-  grid-template-columns: 1fr 100px 1fr;
+  max-width: 1350px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
-  @media #{breakpoints.$breakpoint-lt-sm} {
-    grid-template-areas: 'signed signed' 'spoken signwriting';
-    grid-template-columns: 100px auto;
-  }
-
-  app-sign-writing {
-    grid-area: signwriting;
-    border-inline-end: 1px solid var(--app-divider-color);
-
-    @media #{breakpoints.$breakpoint-lt-sm} {
-      height: 235px;
-    }
+  @media (prefers-color-scheme: dark) {
+    background: #222;
   }
 }
 
 .sign-language {
-  grid-area: signed;
-  display: flex;
+  position: relative;
 
-  app-video {
-    flex: 1;
+  .video-controls {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 10;
   }
 }
 
 .translation-output {
-  grid-area: spoken;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  border-left: 1px solid #eee;
+
+  @media (prefers-color-scheme: dark) {
+    border-left-color: #333;
+  }
 }
 
 .translation-text {
   font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-  padding: 20px 58px 20px 24px;
-  color: #878787;
+  color: #333;
   font-size: 24px;
   line-height: 32px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 150px;
 
-  :first-child {
-    flex-grow: 1;
+  @media (prefers-color-scheme: dark) {
+    color: #fff;
   }
-}
 
-app-upload {
-  text-align: center;
-  padding: 43px 16px 65px;
-  width: 100%;
-}
+  > :first-child {
+    flex: 1;
+  }
 
-app-video {
-  width: 100%;
+  > :last-child {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
 }

@@ -45,6 +45,7 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   @Input() displayFps = true;
   @Input() displayControls = true;
+  @Input() displayPose = true;
 
   canvasCtx!: CanvasRenderingContext2D;
 
@@ -178,8 +179,10 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
           // Draw video
           ctx.drawImage(poseState.pose.image, 0, 0, canvas.width, canvas.height);
 
-          // Draw pose
-          this.poseService.draw(poseState.pose, ctx);
+          // Draw pose (optional)
+          if (this.displayPose) {
+            this.poseService.draw(poseState.pose, ctx);
+          }
         }),
         takeUntil(this.ngUnsubscribe)
       )

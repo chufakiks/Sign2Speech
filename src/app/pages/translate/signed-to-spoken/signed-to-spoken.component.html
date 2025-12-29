@@ -1,6 +1,18 @@
 <div class="interface">
   <div class="sign-language">
-    <app-video [displayControls]="false" [displayFps]="false" />
+    <app-video [displayControls]="false" [displayFps]="false" [displayPose]="showPose" />
+
+    <div class="video-controls">
+      <ion-button
+        fill="clear"
+        shape="round"
+        [color]="showPose ? 'primary' : 'medium'"
+        (click)="togglePose()"
+        matTooltip="Toggle pose overlay"
+        [matTooltipPosition]="'above'">
+        <ion-icon name="body-outline" slot="icon-only" />
+      </ion-button>
+    </div>
   </div>
 
   <div class="translation-output">
