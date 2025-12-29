@@ -2,14 +2,12 @@ import {Injectable} from '@angular/core';
 import {Action, State, StateContext} from '@ngxs/store';
 import {SetSetting} from './settings.actions';
 
-export type PoseViewerSetting = 'pose' | 'avatar' | 'person';
+export type PoseViewerSetting = 'pose' | 'person';
 
 export interface SettingsStateModel {
   receiveVideo: boolean;
 
   detectSign: boolean;
-
-  animatePose: boolean;
 
   drawVideo: boolean;
   drawPose: boolean;
@@ -24,8 +22,6 @@ const initialState: SettingsStateModel = {
   receiveVideo: false,
 
   detectSign: false,
-
-  animatePose: false,
 
   drawVideo: true,
   drawPose: true,

@@ -33,16 +33,4 @@ export class ThreeService {
   get Plane(): typeof three.Plane {
     return this.three.Plane;
   }
-
-  get VectorKeyframeTrack(): typeof three.VectorKeyframeTrack {
-    return this.three.VectorKeyframeTrack;
-  }
-
-  get QuaternionKeyframeTrack(): typeof three.QuaternionKeyframeTrack {
-    return this.three.QuaternionKeyframeTrack;
-  }
-
-  get AnimationClip(): typeof three.AnimationClip {
-    return this.three.AnimationClip;
-  }
 }
