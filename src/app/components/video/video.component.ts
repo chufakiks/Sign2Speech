@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, HostBinding, inject, Input, viewChild} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {combineLatest, firstValueFrom} from 'rxjs';
+import {firstValueFrom} from 'rxjs';
 import {VideoSettings, VideoStateModel} from '../../core/modules/ngxs/store/video/video.state';
 import Stats from 'stats.js';
 import {distinctUntilChanged, filter, map, takeUntil, tap} from 'rxjs/operators';
@@ -9,9 +9,7 @@ import {wait} from '../../core/helpers/wait/wait';
 import {LoadPoseEstimationModel, PoseVideoFrame} from '../../modules/pose/pose.actions';
 import {PoseStateModel} from '../../modules/pose/pose.state';
 import {PoseService} from '../../modules/pose/pose.service';
-import {SignWritingStateModel} from '../../modules/sign-writing/sign-writing.state';
 import {SettingsStateModel} from '../../modules/settings/settings.state';
-import {SignWritingService} from '../../modules/sign-writing/sign-writing.service';
 import {IonIcon} from '@ionic/angular/standalone';
 import {VideoControlsComponent} from './video-controls/video-controls.component';
 import {addIcons} from 'ionicons';
@@ -33,11 +31,9 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   videoState$ = this.store.select<VideoStateModel>(state => state.video);
   poseState$ = this.store.select<PoseStateModel>(state => state.pose);
-  signWritingState$ = this.store.select<SignWritingStateModel>(state => state.signWriting);
-  signingProbability$ = this.store.select<number>(state => state.detector.signingProbability);
+  signingProbability$ = this.store.select<number>(state => state.detector?.signingProbability ?? 0);
 
   private poseService = inject(PoseService);
-  private signWritingService = inject(SignWritingService);
   private elementRef = inject(ElementRef);
 
   readonly videoEl = viewChild<ElementRef<HTMLVideoElement>>('video');
@@ -74,7 +70,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
     this.trackPose();
 
     this.canvasCtx = this.canvasEl().nativeElement.getContext('2d');
-    this.preloadSignWritingFont();
     this.drawChanges();
 
     this.preloadPoseEstimationModel();
@@ -83,30 +78,23 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
     const resizeObserver = new ResizeObserver(this.scaleCanvas.bind(this));
     resizeObserver.observe(this.elementRef.nativeElement);
-    resizeObserver.observe(this.appRootEl); // Catch changes when canvas becomes bigger then screen
+    resizeObserver.observe(this.appRootEl);
   }
 
   async appLoop(): Promise<void> {
-    // const fps = this.store.snapshot().video.videoSettings.frameRate;
     const video = this.videoEl().nativeElement;
     const poseAction = new PoseVideoFrame(video);
 
     let lastTime = null;
     while (true) {
       if (video.readyState === 0) {
-        // if video is no longer available
         break;
       }
 
-      // Make sure the frame changed
       if (video.currentTime !== lastTime) {
         lastTime = video.currentTime;
-
-        // Get pose estimation
         await firstValueFrom(this.store.dispatch(poseAction));
       }
-
-      // TODO await videoframe if supported
 
       await wait(0);
     }
@@ -121,7 +109,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
       .pipe(
         tap(({camera, src}) => {
           this.videoEnded = false;
-          // Either video feed or camera
           video.src = src || '';
           video.srcObject = camera;
         }),
@@ -137,8 +124,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
           const canvasEl = this.canvasEl();
           canvasEl.nativeElement.width = width;
           canvasEl.nativeElement.height = height;
-
-          // It is required to wait for next frame, as grid element might still be resizing
           requestAnimationFrame(this.scaleCanvas.bind(this));
         }),
         tap((settings: VideoSettings) => (this.aspectRatio = 'aspect-' + settings.aspectRatio)),
@@ -149,7 +134,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   scaleCanvas(): void {
     requestAnimationFrame(() => {
-      // Zoom canvas to 100% width
       const bbox = this.elementRef.nativeElement.getBoundingClientRect();
       const documentBbox = this.appRootEl.getBoundingClientRect();
 
@@ -158,9 +142,7 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
       const scale = width / canvasEl.width;
       canvasEl.style.transform = `scale(-${scale}, ${scale}) translateX(-100%)`;
 
-      // Set parent element height
       this.elementRef.nativeElement.style.height = canvasEl.height * scale + 'px';
-      // Set canvas parent element width
       canvasEl.parentElement.style.width = width + 'px';
     });
   }
@@ -171,17 +153,12 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
         map(state => state.pose),
         filter(Boolean),
         tap(() => {
-          this.fpsStats.end(); // End previous frame time
-          this.fpsStats.begin(); // Start new frame time
+          this.fpsStats.end();
+          this.fpsStats.begin();
         }),
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe();
-  }
-
-  preloadSignWritingFont(): void {
-    this.canvasCtx.font = '100px SuttonSignWritingOneD';
-    this.canvasCtx.fillText('Preload SignWriting', 0, 0);
   }
 
   preloadPoseEstimationModel(): void {
@@ -191,31 +168,18 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   drawChanges(): void {
     const ctx = this.canvasCtx;
     const canvas = ctx.canvas;
-    combineLatest([this.poseState$, this.signWritingState$, this.settingsState$])
+
+    this.poseState$
       .pipe(
-        distinctUntilChanged((x, y) => x[1].timestamp === y[1].timestamp),
-        tap(([poseState, signWritingState, settingsState]) => {
-          if (poseState.pose) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        filter(state => !!state.pose),
+        tap(poseState => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw video
-            if (settingsState.drawVideo) {
-              ctx.drawImage(poseState.pose.image, 0, 0, canvas.width, canvas.height);
-            } else {
-              ctx.fillStyle = 'white';
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
+          // Draw video
+          ctx.drawImage(poseState.pose.image, 0, 0, canvas.width, canvas.height);
 
-            // Draw pose
-            if (settingsState.drawPose) {
-              this.poseService.draw(poseState.pose, ctx);
-            }
-
-            // Draw Sign Writing
-            if (settingsState.drawSignWriting) {
-              this.signWritingService.draw(signWritingState, ctx);
-            }
-          }
+          // Draw pose
+          this.poseService.draw(poseState.pose, ctx);
         }),
         takeUntil(this.ngUnsubscribe)
       )
@@ -227,12 +191,10 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
     this.fpsStats.dom.style.position = 'absolute';
     this.statsEl().nativeElement.appendChild(this.fpsStats.dom);
 
-    // TODO this on change of input property
     if (!this.displayFps) {
       this.fpsStats.dom.style.display = 'none';
     }
 
-    // Sign detection panel
     const signingPanel = new Stats.Panel('Signing', '#ff8', '#221');
     this.signingStats.dom.innerHTML = '';
     this.signingStats.addPanel(signingPanel);
@@ -245,7 +207,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   }
 
   setDetectorListener(panel: Stats.Panel): void {
-    // Update panel value
     this.signingProbability$
       .pipe(
         tap(v => panel.update(v * 100, 100)),
@@ -253,8 +214,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
       )
       .subscribe();
 
-    // TODO
-    // Show hide panel
     this.settingsState$
       .pipe(
         map(settings => settings.detectSign),

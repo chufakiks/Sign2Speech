@@ -1,5 +1,4 @@
 import {Routes} from '@angular/router';
-import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {provideStates} from '@ngxs/store';
 import {TranslateState} from './modules/translate/translate.state';
 import {MainComponent} from './pages/main.component';
@@ -18,16 +17,7 @@ export const routes: Routes = [
         path: 'translate',
         redirectTo: '',
       },
-      // {
-      //   path: 'converse',
-      //   loadChildren: () => import('./tab2/tab2.module').then(m => m.Tab2PageModule),
-      // },
-      // {
-      //   path: 'avatars',
-      //   loadChildren: () => import('./tab3/tab3.module').then(m => m.Tab3PageModule),
-      // },
-      {path: 'settings', loadChildren: () => import('./pages/settings/settings.routes').then(m => m.routes)},
     ],
   },
-  {path: '**', component: NotFoundComponent},
+  {path: '**', redirectTo: ''},
 ];

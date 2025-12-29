@@ -1,42 +1,32 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {SetSetting} from '../../modules/settings/settings.actions';
-import {fromEvent, Observable} from 'rxjs';
+import {fromEvent} from 'rxjs';
 import {BaseComponent} from '../../components/base/base.component';
-import {filter, takeUntil, tap} from 'rxjs/operators';
+import {takeUntil, tap} from 'rxjs/operators';
 import {TranslocoService} from '@jsverse/transloco';
-import {TranslationService} from '../../modules/translate/translate.service';
 import {Meta, Title} from '@angular/platform-browser';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {TranslateMobileComponent} from './translate-mobile/translate-mobile.component';
 import {TranslateDesktopComponent} from './translate-desktop/translate-desktop.component';
 
 @Component({
   selector: 'app-translate',
   templateUrl: './translate.component.html',
   styleUrls: ['./translate.component.scss'],
-  imports: [TranslateMobileComponent, TranslateDesktopComponent],
+  imports: [TranslateDesktopComponent],
 })
 export class TranslateComponent extends BaseComponent implements OnInit {
   private store = inject(Store);
   private transloco = inject(TranslocoService);
-  translation = inject(TranslationService);
-  private mediaMatcher = inject(MediaMatcher);
   private meta = inject(Meta);
   private title = inject(Title);
 
-  isMobile: MediaQueryList;
-
   constructor() {
     super();
-
-    this.isMobile = this.mediaMatcher.matchMedia('screen and (max-width: 599px)');
 
     // Default settings
     this.store.dispatch([
       new SetSetting('receiveVideo', true),
       new SetSetting('detectSign', false),
-      new SetSetting('drawSignWriting', false), // This setting currently also controls loading the SignWriting models.
       new SetSetting('drawPose', true),
       new SetSetting('poseViewer', 'pose'),
     ]);
@@ -67,7 +57,6 @@ export class TranslateComponent extends BaseComponent implements OnInit {
       return;
     }
 
-    // Autoplay videos don't play before page interaction, or after re-opening PWA without refresh
     fromEvent(window, 'click')
       .pipe(
         tap(async () => {
