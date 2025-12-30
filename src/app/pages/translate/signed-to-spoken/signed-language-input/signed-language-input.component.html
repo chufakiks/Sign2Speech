@@ -1,12 +1,23 @@
-@if ((recordingState$ | async) === 'processing') {
-  <ion-spinner name="crescent" color="primary" />
-} @else {
-  <ion-fab-button
-    size="small"
-    [color]="(recordingState$ | async) === 'recording' ? 'warning' : 'danger'"
-    (click)="onRecordClick()"
-    [matTooltip]="(recordingState$ | async) === 'recording' ? 'Stop recording' : 'Start recording'"
-    [matTooltipPosition]="'above'">
-    <ion-icon [name]="(recordingState$ | async) === 'recording' ? 'stop-outline' : 'ellipse-outline'" />
-  </ion-fab-button>
-}
+<div class="controls-container">
+  <ion-segment [value]="translationMode$ | async" (ionChange)="onModeChange($event)">
+    <ion-segment-button value="signwriting">
+      <ion-label>SignWriting</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="spamo">
+      <ion-label>SpaMo</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  @if ((recordingState$ | async) === 'processing') {
+    <ion-spinner name="crescent" color="primary" />
+  } @else {
+    <ion-fab-button
+      size="small"
+      [color]="(recordingState$ | async) === 'recording' ? 'warning' : 'danger'"
+      (click)="onRecordClick()"
+      [matTooltip]="(recordingState$ | async) === 'recording' ? 'Stop recording' : 'Start recording'"
+      [matTooltipPosition]="'above'">
+      <ion-icon [name]="(recordingState$ | async) === 'recording' ? 'stop-outline' : 'ellipse-outline'" />
+    </ion-fab-button>
+  }
+</div>
