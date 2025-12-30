@@ -1,13 +1,4 @@
 <div class="controls-container">
-  <ion-segment [value]="translationMode$ | async" (ionChange)="onModeChange($event)">
-    <ion-segment-button value="signwriting">
-      <ion-label>SignWriting</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="spamo">
-      <ion-label>SpaMo</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
   @if ((recordingState$ | async) === 'processing') {
     <ion-spinner name="crescent" color="primary" />
   } @else {
