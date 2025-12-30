@@ -7,11 +7,18 @@
   padding: 24px;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1350px;
+  gap: 16px;
+}
+
 .interface {
   display: grid;
   grid-template-columns: 3fr 2fr;
   width: 100%;
-  max-width: 1350px;
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
