@@ -12,8 +12,8 @@ from pydantic import BaseModel
 from typing import Optional
 import logging
 
-from pose_converter import frames_to_pose
-from segmentation_service import segment
+from backend.pose_converter import frames_to_pose
+from backend.segmentation_service import segment
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
