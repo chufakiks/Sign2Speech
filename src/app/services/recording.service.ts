@@ -138,7 +138,10 @@ export class RecordingService {
     const payload = this.buildPayload();
     const backendUrl = environment.backendUrl || 'http://localhost:8000';
 
-    return firstValueFrom(this.http.post<SegmentationResult>(`${backendUrl}/api/segment`, payload));
+    console.log(`📤 Sending ${payload.frames.length} frames to ${backendUrl}/api/segment`);
+    const result = await firstValueFrom(this.http.post<SegmentationResult>(`${backendUrl}/api/segment`, payload));
+    console.log('📥 Received segmentation result from backend');
+    return result;
   }
 
   private buildPayload(): SegmentRequest {

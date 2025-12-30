@@ -62,6 +62,7 @@ export class TranslateState implements NgxsOnInit {
 
   @Action(StartRecording)
   startRecording({patchState}: StateContext<TranslateStateModel>): void {
+    console.log('🎥 Recording started');
     this.recordingService.startRecording();
     patchState({
       recordingState: 'recording',
@@ -72,20 +73,32 @@ export class TranslateState implements NgxsOnInit {
 
   @Action(StopRecording)
   async stopRecording({patchState}: StateContext<TranslateStateModel>): Promise<void> {
+    console.log('⏸️  Recording stopped, processing...');
     patchState({recordingState: 'processing'});
 
     const result = await this.recordingService.stopRecording();
 
     if (result) {
+      console.log('✅ Segmentation complete!', {
+        frameCount: result.frame_count,
+        duration: `${result.duration.toFixed(2)}s`,
+        signsDetected: result.signs.length,
+        sentencesDetected: result.sentences.length,
+      });
+      console.log('📊 Signs:', result.signs);
+      console.log('📝 Sentences:', result.sentences);
+
       patchState({
         recordingState: 'idle',
         segmentationResult: result,
         recordingError: null,
       });
     } else {
+      const error = 'Segmentation failed or recording too short';
+      console.error('❌', error);
       patchState({
         recordingState: 'idle',
-        recordingError: 'Segmentation failed or recording too short',
+        recordingError: error,
       });
     }
   }
