@@ -27,7 +27,6 @@ export class TranslateComponent extends BaseComponent implements OnInit {
     this.store.dispatch([
       new SetSetting('receiveVideo', true),
       new SetSetting('detectSign', false),
-      new SetSetting('drawPose', true),
       new SetSetting('poseViewer', 'pose'),
     ]);
   }

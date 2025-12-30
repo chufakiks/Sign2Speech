@@ -10,7 +10,6 @@ export interface SettingsStateModel {
   detectSign: boolean;
 
   drawVideo: boolean;
-  drawPose: boolean;
   drawSignWriting: boolean;
 
   appearance: string;
@@ -24,7 +23,6 @@ const initialState: SettingsStateModel = {
   detectSign: false,
 
   drawVideo: true,
-  drawPose: true,
   drawSignWriting: false,
 
   poseViewer: 'pose',

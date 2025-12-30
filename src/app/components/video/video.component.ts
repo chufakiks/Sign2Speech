@@ -8,7 +8,6 @@ import {BaseComponent} from '../base/base.component';
 import {wait} from '../../core/helpers/wait/wait';
 import {LoadPoseEstimationModel, PoseVideoFrame} from '../../modules/pose/pose.actions';
 import {PoseStateModel} from '../../modules/pose/pose.state';
-import {PoseService} from '../../modules/pose/pose.service';
 import {SettingsStateModel} from '../../modules/settings/settings.state';
 import {IonIcon} from '@ionic/angular/standalone';
 import {VideoControlsComponent} from './video-controls/video-controls.component';
@@ -33,7 +32,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   poseState$ = this.store.select<PoseStateModel>(state => state.pose);
   signingProbability$ = this.store.select<number>(state => state.detector?.signingProbability ?? 0);
 
-  private poseService = inject(PoseService);
   private elementRef = inject(ElementRef);
 
   readonly videoEl = viewChild<ElementRef<HTMLVideoElement>>('video');
@@ -45,7 +43,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   @Input() displayFps = true;
   @Input() displayControls = true;
-  @Input() displayPose = true;
 
   canvasCtx!: CanvasRenderingContext2D;
 
@@ -178,11 +175,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
           // Draw video
           ctx.drawImage(poseState.pose.image, 0, 0, canvas.width, canvas.height);
-
-          // Draw pose (optional)
-          if (this.displayPose) {
-            this.poseService.draw(poseState.pose, ctx);
-          }
         }),
         takeUntil(this.ngUnsubscribe)
       )
