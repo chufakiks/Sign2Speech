@@ -35,17 +35,28 @@ def segment(pose: Pose, fps: float = 30.0) -> dict:
             "duration": 3.0
         }
     """
-    # Run segmentation
-    # Returns (eaf, tiers) where tiers contains "SIGN" and "SENTENCE" lists
-    eaf, tiers = _segment_pose(pose, verbose=False)
+    import logging
+    logger = logging.getLogger(__name__)
 
     # Extract frame count from pose
     frame_count = pose.body.data.shape[0]
     duration = frame_count / fps
 
+    logger.info(f"Running segmentation on {frame_count} frames ({duration:.2f}s)")
+
+    # Run segmentation
+    # Returns (eaf, tiers) where tiers contains "SIGN" and "SENTENCE" lists
+    eaf, tiers = _segment_pose(pose, verbose=False)
+
+    logger.info(f"Segmentation tiers: {list(tiers.keys())}")
+    logger.info(f"Raw SIGN tier: {tiers.get('SIGN', [])}")
+    logger.info(f"Raw SENTENCE tier: {tiers.get('SENTENCE', [])}")
+
     # Convert tiers to structured format
     signs = _extract_segments(tiers.get("SIGN", []), fps)
     sentences = _extract_segments(tiers.get("SENTENCE", []), fps)
+
+    logger.info(f"Detected {len(signs)} signs and {len(sentences)} sentences")
 
     return {
         "signs": signs,
