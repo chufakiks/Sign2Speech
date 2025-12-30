@@ -28,6 +28,14 @@ export interface TranslationResult {
   duration: number;
 }
 
+export interface SpaMoResult {
+  translation: string;
+  frame_count: number;
+  spatial_features_shape: number[];
+  motion_features_shape: number[];
+  target_language: string;
+}
+
 // Keep old interface for backward compatibility
 export interface SegmentationResult {
   signs: SegmentBoundary[];
@@ -202,5 +210,73 @@ export class RecordingService {
       z: lm.z,
       visibility: lm.visibility,
     }));
+  }
+
+  async stopRecordingSpaMo(): Promise<TranslationResult | null> {
+    if (this.recordingState$.value !== 'recording') {
+      return null;
+    }
+
+    const recordingDuration = (Date.now() - this.recordingStartTime) / 1000;
+    this.fps = this.frames.length / recordingDuration;
+
+    if (this.frames.length < 10) {
+      this.error$.next('Recording too short. Need at least 10 frames.');
+      this.recordingState$.next('idle');
+      return null;
+    }
+
+    this.recordingState$.next('processing');
+
+    try {
+      const spamoResult = await this.sendForSpaMoTranslation();
+
+      // Convert SpaMo result to TranslationResult format for UI compatibility
+      const result: TranslationResult = {
+        signs: [],
+        sentences: [],
+        full_text: spamoResult.translation,
+        frame_count: spamoResult.frame_count,
+        duration: recordingDuration,
+      };
+
+      this.translationResult$.next(result);
+      this.recordingState$.next('idle');
+      return result;
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : 'SpaMo translation failed';
+      this.error$.next(errorMessage);
+      this.recordingState$.next('idle');
+      return null;
+    }
+  }
+
+  private async sendForSpaMoTranslation(): Promise<SpaMoResult> {
+    const backendUrl = environment.backendUrl || 'http://localhost:8000';
+
+    // Convert canvas frames to base64
+    const base64Frames = this.frames
+      .map(pose => {
+        if (pose.image) {
+          return pose.image.toDataURL('image/jpeg', 0.8);
+        }
+        return '';
+      })
+      .filter(frame => frame !== '');
+
+    const payload = {
+      frames: base64Frames,
+      fps: this.fps,
+      target_language: 'German',
+    };
+
+    console.log(`📤 Sending ${payload.frames.length} frames to ${backendUrl}/api/translate-spamo`);
+    const result = await firstValueFrom(this.http.post<SpaMoResult>(`${backendUrl}/api/translate-spamo`, payload));
+
+    console.log('📥 SpaMo translation result:');
+    console.log(`   Translation: "${result.translation}"`);
+    console.log(`   Frame count: ${result.frame_count}`);
+
+    return result;
   }
 }
