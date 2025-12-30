@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Шинж тэмдгийг илрүүлэх",
     "drawVideo": "Видео зурах",
-    "drawPose": "Поз зурах",
     "drawSignWriting": "Тэмдгийн бичээс зурах",
-    "animatePose": "Хөдөлгөөнт поз",
     "poseViewer": {
       "pose": "Араг яс",
       "avatar": "Аватар",

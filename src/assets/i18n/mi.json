@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Rapu Waitohu",
     "drawVideo": "Tuhia Ataata",
-    "drawPose": "Tuhia Pose",
     "drawSignWriting": "Tuhia te Tuhi Tohu",
-    "animatePose": "Whakaora Pose",
     "poseViewer": {
       "pose": "Koiwi",
       "avatar": "Avatar",

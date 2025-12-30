@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "检测标志",
     "drawVideo": "画视频",
-    "drawPose": "画姿势",
     "drawSignWriting": "画标志写作",
-    "animatePose": "动画姿势",
     "poseViewer": {
       "pose": "骨骼",
       "avatar": "阿凡达",

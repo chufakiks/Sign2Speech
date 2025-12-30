@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ਨਿਸ਼ਾਨ ਦਾ ਪਤਾ ਲਗਾਓ",
     "drawVideo": "ਵੀਡੀਓ ਬਣਾਓ",
-    "drawPose": "ਪੋਜ਼ ਖਿੱਚੋ",
     "drawSignWriting": "ਸਾਈਨ ਰਾਈਟਿੰਗ ਡਰਾਅ ਕਰੋ",
-    "animatePose": "ਐਨੀਮੇਟ ਪੋਜ਼",
     "poseViewer": {
       "pose": "ਪਿੰਜਰ",
       "avatar": "ਅਵਤਾਰ",

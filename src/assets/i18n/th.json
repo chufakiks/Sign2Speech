@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ตรวจจับสัญญาณ",
     "drawVideo": "วาดวิดีโอ",
-    "drawPose": "วาดท่า",
     "drawSignWriting": "วาดป้ายเขียน",
-    "animatePose": "แอนิเมชั่น โพสท่า",
     "poseViewer": {
       "pose": "โครงกระดูก",
       "avatar": "สัญลักษณ์",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Wykryj znak",
     "drawVideo": "Rysuj wideo",
-    "drawPose": "Rysuj pozę",
     "drawSignWriting": "Narysuj pisanie znakami",
-    "animatePose": "Animowana pozycja",
     "poseViewer": {
       "pose": "Szkielet",
       "avatar": "Awatara",

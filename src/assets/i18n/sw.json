@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Tambua Ishara",
     "drawVideo": "Chora Video",
-    "drawPose": "Chora Pozi",
     "drawSignWriting": "Chora Uandishi wa Ishara",
-    "animatePose": "Huisha Mkao",
     "poseViewer": {
       "pose": "Mifupa",
       "avatar": "Avatar",

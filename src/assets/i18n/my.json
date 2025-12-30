@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "လက္ခဏာကို ထောက်လှမ်းပါ။",
     "drawVideo": "Video ဆွဲပါ။",
-    "drawPose": "Pose ဆွဲပါ။",
     "drawSignWriting": "Sign Writing ဆွဲပါ။",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "အရိုးစု",
       "avatar": "ကိုယ်ပွား",

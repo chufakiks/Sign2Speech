@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Tunnista merkki",
     "drawVideo": "Piirrä video",
-    "drawPose": "Piirrä Pose",
     "drawSignWriting": "Piirrä merkkien kirjoittaminen",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Luuranko",
       "avatar": "hahmo",

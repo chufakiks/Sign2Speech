@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Dấu hiệu phát hiện",
     "drawVideo": "Vẽ video",
-    "drawPose": "Vẽ tư thế",
     "drawSignWriting": "Vẽ Ký hiệu Viết",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Bộ xương",
       "avatar": "hình đại diện",

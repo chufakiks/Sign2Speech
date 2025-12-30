@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Откриване на знак",
     "drawVideo": "Нарисувайте видео",
-    "drawPose": "Нарисувайте поза",
     "drawSignWriting": "Начертайте знак за писане",
-    "animatePose": "Анимирана поза",
     "poseViewer": {
       "pose": "скелет",
       "avatar": "Аватар",

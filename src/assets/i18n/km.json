@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "រកឃើញសញ្ញា",
     "drawVideo": "គូរវីដេអូ",
-    "drawPose": "គូររូប",
     "drawSignWriting": "គូរសញ្ញាសរសេរ",
-    "animatePose": "រូបគំនូរជីវចល",
     "poseViewer": {
       "pose": "គ្រោងឆ្អឹង",
       "avatar": "Avatar",

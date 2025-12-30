@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Rileva segno",
     "drawVideo": "Disegna video",
-    "drawPose": "Disegna la posa",
     "drawSignWriting": "Disegna la scrittura del segno",
-    "animatePose": "Anima la posa",
     "poseViewer": {
       "pose": "Scheletro",
       "avatar": "Avatar",

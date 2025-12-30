@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ምልክትን ፈልግ",
     "drawVideo": "ቪዲዮ ይሳሉ",
-    "drawPose": "አቀማመጥ ይሳሉ",
     "drawSignWriting": "የምልክት ጽሑፍ ይሳሉ",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "አጽም",
       "avatar": "አምሳያ",

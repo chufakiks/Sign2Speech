@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Fantaro famantarana",
     "drawVideo": "Manaova sary video",
-    "drawPose": "Manaova sary Pose",
     "drawSignWriting": "Soraty ny sora-baventy",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "taolana",
       "avatar": "Avatar",

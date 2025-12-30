@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Jel észlelése",
     "drawVideo": "Rajzolj videót",
-    "drawPose": "Rajzolj pózt",
     "drawSignWriting": "Rajzolj Jelírás",
-    "animatePose": "Animált póz",
     "poseViewer": {
       "pose": "Csontváz",
       "avatar": "Avatar",

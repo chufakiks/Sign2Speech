@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "గుర్తును గుర్తించండి",
     "drawVideo": "వీడియో గీయండి",
-    "drawPose": "పోజ్ గీయండి",
     "drawSignWriting": "సైన్ రైటింగ్ గీయండి",
-    "animatePose": "యానిమేట్ పోజ్",
     "poseViewer": {
       "pose": "అస్థిపంజరం",
       "avatar": "అవతార్",

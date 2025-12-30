@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Shenja e zbulimit",
     "drawVideo": "Vizatoni video",
-    "drawPose": "Vizatoni pozën",
     "drawSignWriting": "Vizatoni Shkrim i Shenjave",
-    "animatePose": "Pozë e gjallë",
     "poseViewer": {
       "pose": "Skeleti",
       "avatar": "Avatari",

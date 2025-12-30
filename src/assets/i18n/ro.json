@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detectează semnul",
     "drawVideo": "Desenați video",
-    "drawPose": "Desenează Poza",
     "drawSignWriting": "Desenați scrierea semnelor",
-    "animatePose": "Poza animată",
     "poseViewer": {
       "pose": "Schelet",
       "avatar": "Avatar",

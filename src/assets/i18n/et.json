@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Tuvasta märk",
     "drawVideo": "Joonista video",
-    "drawPose": "Joonista poos",
     "drawSignWriting": "Joonista märkide kirjutamine",
-    "animatePose": "Animeerida poos",
     "poseViewer": {
       "pose": "Skelett",
       "avatar": "Avatar",

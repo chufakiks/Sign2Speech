@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detekte siy",
     "drawVideo": "Trase Videyo",
-    "drawPose": "Trase poze",
     "drawSignWriting": "Trase ekriti siy",
-    "animatePose": "Anime poze",
     "poseViewer": {
       "pose": "Kilè eskèlèt",
       "avatar": "Avatar",

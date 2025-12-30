@@ -132,8 +132,7 @@
   <rect x="470" y="330" width="180" height="85" class="state-box"/>
   <text x="560" y="350" class="section-title" text-anchor="middle">SettingsState</text>
   <text x="560" y="368" class="small-text" text-anchor="middle">receiveVideo: bool</text>
-  <text x="560" y="381" class="small-text" text-anchor="middle">drawPose: bool</text>
-  <text x="560" y="394" class="small-text" text-anchor="middle">poseViewer: string</text>
+  <text x="560" y="381" class="small-text" text-anchor="middle">poseViewer: string</text>
   <text x="560" y="407" class="small-text" text-anchor="middle">appearance: string</text>
 
   <rect x="670" y="330" width="160" height="85" class="state-box"/>

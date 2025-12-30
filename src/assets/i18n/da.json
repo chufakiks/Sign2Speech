@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Opdag tegn",
     "drawVideo": "Tegn video",
-    "drawPose": "Tegn Pose",
     "drawSignWriting": "Tegne tegnskrivning",
-    "animatePose": "Animer positur",
     "poseViewer": {
       "pose": "Skelet",
       "avatar": "Avatar",

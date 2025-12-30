@@ -26,7 +26,6 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   private store = inject(Store);
 
   settingsState$ = this.store.select<SettingsStateModel>(state => state.settings);
-  animatePose$ = this.store.select<boolean>(state => state.settings.animatePose);
 
   videoState$ = this.store.select<VideoStateModel>(state => state.video);
   poseState$ = this.store.select<PoseStateModel>(state => state.pose);

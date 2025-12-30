@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Upptäck tecken",
     "drawVideo": "Rita video",
-    "drawPose": "Rita Pose",
     "drawSignWriting": "Rita teckenskrivning",
-    "animatePose": "Animera Pose",
     "poseViewer": {
       "pose": "Skelett",
       "avatar": "Avatar",

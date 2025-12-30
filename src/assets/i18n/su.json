@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Ngadeteksi Tanda",
     "drawVideo": "Ngagambar Video",
-    "drawPose": "Ngagambar Pose",
     "drawSignWriting": "Ngagambar Tulisan Tanda",
-    "animatePose": "Ngahirupkeun Pose",
     "poseViewer": {
       "pose": "Rorongkong",
       "avatar": "Avatar",

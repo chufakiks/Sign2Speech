@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "चिन्ह शोधा",
     "drawVideo": "व्हिडिओ काढा",
-    "drawPose": "पोझ काढा",
     "drawSignWriting": "चिन्ह लेखन काढा",
-    "animatePose": "अॅनिमेट पोज",
     "poseViewer": {
       "pose": "सांगाडा",
       "avatar": "अवतार",

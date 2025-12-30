@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ʻIke i ka hōʻailona",
     "drawVideo": "E kaha kiʻi wikiō",
-    "drawPose": "Kaha kiʻi",
     "drawSignWriting": "E kaha i ke kakau ana",
-    "animatePose": "Hoʻolaula",
     "poseViewer": {
       "pose": "Iwi",
       "avatar": "Avatar",

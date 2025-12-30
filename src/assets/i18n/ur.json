@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "نشان کا پتہ لگائیں۔",
     "drawVideo": "ویڈیو ڈرا کریں۔",
-    "drawPose": "پوز ڈرا",
     "drawSignWriting": "سائن رائٹنگ ڈرا کریں۔",
-    "animatePose": "متحرک پوز",
     "poseViewer": {
       "pose": "ڈھانچہ",
       "avatar": "اوتار",

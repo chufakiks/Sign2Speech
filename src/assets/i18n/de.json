@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Zeichen erkennen",
     "drawVideo": "Video zeichnen",
-    "drawPose": "Pose zeichnen",
     "drawSignWriting": "Zeichnen Sie das Schreiben von Zeichen",
-    "animatePose": "Pose animieren",
     "poseViewer": {
       "pose": "Skelett",
       "avatar": "Benutzerbild",

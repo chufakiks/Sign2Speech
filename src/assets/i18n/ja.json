@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "サインを検出する",
     "drawVideo": "ビデオを描く",
-    "drawPose": "ポーズを描く",
     "drawSignWriting": "サインライティングを描く",
-    "animatePose": "ポーズをアニメートする",
     "poseViewer": {
       "pose": "スケルトン",
       "avatar": "アバター",

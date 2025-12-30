@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "চিহ্ন সনাক্ত করুন",
     "drawVideo": "ভিডিও আঁকুন",
-    "drawPose": "ভঙ্গি আঁকা",
     "drawSignWriting": "সাইন রাইটিং আঁকা",
-    "animatePose": "অ্যানিমেট পোজ",
     "poseViewer": {
       "pose": "কঙ্কাল",
       "avatar": "অবতার",

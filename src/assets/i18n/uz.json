@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Belgini aniqlash",
     "drawVideo": "Video chizish",
-    "drawPose": "Pozani chizish",
     "drawSignWriting": "Belgilar yozuvini chizish",
-    "animatePose": "Animatsion poza",
     "poseViewer": {
       "pose": "Skelet",
       "avatar": "Avatar",

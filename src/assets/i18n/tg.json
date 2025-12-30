@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Нишонаи ошкор",
     "drawVideo": "Видео кашед",
-    "drawPose": "Позаро кашед",
     "drawSignWriting": "Навиштани аломатҳоро кашед",
-    "animatePose": "Позаи аниматсионии",
     "poseViewer": {
       "pose": "Скелет",
       "avatar": "Аватар",

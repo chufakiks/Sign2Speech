@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "அடையாளம் கண்டறியவும்",
     "drawVideo": "வீடியோவை வரையவும்",
-    "drawPose": "போஸ் வரையவும்",
     "drawSignWriting": "கையெழுத்து எழுதுதல்",
-    "animatePose": "அனிமேட் போஸ்",
     "poseViewer": {
       "pose": "எலும்புக்கூடு",
       "avatar": "அவதாரம்",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Bespeur teken",
     "drawVideo": "Teken video",
-    "drawPose": "Teken Posisie",
     "drawSignWriting": "Teken Teken Skryf",
-    "animatePose": "Geanimeerde houding",
     "poseViewer": {
       "pose": "Geraamte",
       "avatar": "Avatar",

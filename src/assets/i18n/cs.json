@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detekce znamení",
     "drawVideo": "Nakreslete video",
-    "drawPose": "Nakreslit pózu",
     "drawSignWriting": "Kreslit Znamení Psaní",
-    "animatePose": "Animovaná póza",
     "poseViewer": {
       "pose": "Kostra",
       "avatar": "Avatar",

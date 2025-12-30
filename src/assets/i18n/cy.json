@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Canfod Arwydd",
     "drawVideo": "Tynnu Fideo",
-    "drawPose": "Tynnu Pose",
     "drawSignWriting": "Tynnwch Ysgrifennu Arwyddion",
-    "animatePose": "Animeiddio Pos",
     "poseViewer": {
       "pose": "sgerbwd",
       "avatar": "Avatar",

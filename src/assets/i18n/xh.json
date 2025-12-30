@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Khangela Uphawu",
     "drawVideo": "Zoba iVidiyo",
-    "drawPose": "Zoba Ukuma",
     "drawSignWriting": "Zoba uBhalo loMqondiso",
-    "animatePose": "Philisa Ukuma",
     "poseViewer": {
       "pose": "Amathambo",
       "avatar": "IAvatar",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "علامت تشخیص",
     "drawVideo": "ترسیم ویدئو",
-    "drawPose": "رسم ژست",
     "drawSignWriting": "رسم علامت نویسی",
-    "animatePose": "ژست متحرک",
     "poseViewer": {
       "pose": "اسکلت",
       "avatar": "آواتار",

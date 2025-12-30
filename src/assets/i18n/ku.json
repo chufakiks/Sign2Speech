@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detect Sign",
     "drawVideo": "Vîdyoyê Draw",
-    "drawPose": "Draw Pose",
     "drawSignWriting": "Draw Sign Writing",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Hestî",
       "avatar": "Avatar",

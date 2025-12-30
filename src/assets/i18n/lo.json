@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ກວດພົບສັນຍານ",
     "drawVideo": "ແຕ້ມວິດີໂອ",
-    "drawPose": "ແຕ້ມຮູບ",
     "drawSignWriting": "ແຕ້ມປ້າຍຂຽນ",
-    "animatePose": "ພາບເຄື່ອນໄຫວ",
     "poseViewer": {
       "pose": "ໂຄງກະດູກ",
       "avatar": "ຮູບແທນຕົວ",

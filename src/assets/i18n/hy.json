@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Հայտնաբերման նշան",
     "drawVideo": "Նկարել տեսանյութ",
-    "drawPose": "Նկարել դիրք",
     "drawSignWriting": "Նկարել նշանի գրություն",
-    "animatePose": "Անիմացիոն դիրք",
     "poseViewer": {
       "pose": "Կմախք",
       "avatar": "Անձնանշան",

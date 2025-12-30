@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ಗುರುತು ಪತ್ತೆ ಮಾಡಿ",
     "drawVideo": "ವೀಡಿಯೊ ಬರೆಯಿರಿ",
-    "drawPose": "ಡ್ರಾ ಪೋಸ್",
     "drawSignWriting": "ಸೈನ್ ಬರವಣಿಗೆಯನ್ನು ಎಳೆಯಿರಿ",
-    "animatePose": "ಅನಿಮೇಟ್ ಭಂಗಿ",
     "poseViewer": {
       "pose": "ಅಸ್ಥಿಪಂಜರ",
       "avatar": "ಅವತಾರ",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "გამოვლენის ნიშანი",
     "drawVideo": "დახატე ვიდეო",
-    "drawPose": "დახატე პოზა",
     "drawSignWriting": "ხატვა ნიშნის წერა",
-    "animatePose": "ანიმაციური პოზა",
     "poseViewer": {
       "pose": "ჩონჩხი",
       "avatar": "ავატარი",

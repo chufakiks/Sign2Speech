@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "İşarəni aşkarla",
     "drawVideo": "Video çəkmək",
-    "drawPose": "Poza çəkin",
     "drawSignWriting": "İşarə yazısını çəkin",
-    "animatePose": "Animasiya pozası",
     "poseViewer": {
       "pose": "Skelet",
       "avatar": "Avatar",

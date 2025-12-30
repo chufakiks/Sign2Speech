@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "檢測標誌",
     "drawVideo": "畫視頻",
-    "drawPose": "畫姿勢",
     "drawSignWriting": "畫標誌寫作",
-    "animatePose": "動畫姿勢",
     "poseViewer": {
       "pose": "骨骼",
       "avatar": "阿凡達",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detect Sign",
     "drawVideo": "Gumuhit ng Video",
-    "drawPose": "Gumuhit ng Pose",
     "drawSignWriting": "Gumuhit ng Pagsulat ng Palatandaan",
-    "animatePose": "Pagalawin Pose",
     "poseViewer": {
       "pose": "Kalansay",
       "avatar": "Avatar",

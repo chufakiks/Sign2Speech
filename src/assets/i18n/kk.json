@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Белгіні анықтау",
     "drawVideo": "Бейне салу",
-    "drawPose": "Позаны салу",
     "drawSignWriting": "Белгі жазуын сызу",
-    "animatePose": "Анимациялық поза",
     "poseViewer": {
       "pose": "Қаңқа",
       "avatar": "Аватар",

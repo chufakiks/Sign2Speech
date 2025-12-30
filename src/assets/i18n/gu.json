@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "સાઇન શોધો",
     "drawVideo": "વિડિયો દોરો",
-    "drawPose": "પોઝ દોરો",
     "drawSignWriting": "સાઇન રાઇટિંગ દોરો",
-    "animatePose": "એનિમેટ પોઝ",
     "poseViewer": {
       "pose": "હાડપિંજર",
       "avatar": "અવતાર",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "साइन का पता लगाएं",
     "drawVideo": "वीडियो बनाएं",
-    "drawPose": "ड्रा पोज़",
     "drawSignWriting": "ड्रा साइन राइटिंग",
-    "animatePose": "चेतन मुद्रा",
     "poseViewer": {
       "pose": "कंकाल",
       "avatar": "अवतार",

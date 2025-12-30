@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "كشف تسجيل",
     "drawVideo": "ارسم فيديو",
-    "drawPose": "ارسم وضعية",
     "drawSignWriting": "رسم كتابة التوقيع",
-    "animatePose": "تحريك بوز",
     "poseViewer": {
       "pose": "هيكل عظمي",
       "avatar": "الصورة الرمزية",

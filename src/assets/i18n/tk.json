@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Belgini kesgitläň",
     "drawVideo": "Wideo çyzyň",
-    "drawPose": "Surat çekiň",
     "drawSignWriting": "Bellik ýazgyny çyzyň",
-    "animatePose": "Animasiýa pozasy",
     "poseViewer": {
       "pose": "Skelet",
       "avatar": "Awatar",

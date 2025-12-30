@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Σημάδι ανίχνευσης",
     "drawVideo": "Σχεδίαση βίντεο",
-    "drawPose": "Ζωγράφιση πόζα",
     "drawSignWriting": "Ζωγραφική γραφή",
-    "animatePose": "Ζωντανή πόζα",
     "poseViewer": {
       "pose": "Σκελετός",
       "avatar": "Avatar",

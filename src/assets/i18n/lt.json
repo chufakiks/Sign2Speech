@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Aptikti ženklą",
     "drawVideo": "Nupiešti vaizdo įrašą",
-    "drawPose": "Pieškite pozą",
     "drawSignWriting": "Pieškite ženklų rašymą",
-    "animatePose": "Animuoti poza",
     "poseViewer": {
       "pose": "Skeletas",
       "avatar": "Avataras",

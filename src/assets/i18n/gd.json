@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Soidhne lorg",
     "drawVideo": "Tarraing bhidio",
-    "drawPose": "Tarraing Pose",
     "drawSignWriting": "Tarraing Sgrìobhadh Soidhne",
-    "animatePose": "Beothachadh Pose",
     "poseViewer": {
       "pose": "cnàimhneach",
       "avatar": "Avatar",

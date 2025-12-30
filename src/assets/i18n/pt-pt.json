@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detectar sinal",
     "drawVideo": "Desenhar vídeo",
-    "drawPose": "Desenhar Pose",
     "drawSignWriting": "Desenhar Escrita de Sinal",
-    "animatePose": "Animar pose",
     "poseViewer": {
       "pose": "Esqueleto",
       "avatar": "Avatar",

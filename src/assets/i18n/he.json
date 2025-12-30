@@ -122,9 +122,7 @@
   "settings": {
     "detectSign": "זיהוי מתי מסמנים",
     "drawVideo": "ציור וידאו",
-    "drawPose": "ציור שלד",
     "drawSignWriting": "ציור SignWriting",
-    "animatePose": "אנימציית שלד",
     "poseViewer": {
       "pose": "שלד",
       "avatar": "אווטאר",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "चिन्ह पत्ता लगाउनुहोस्",
     "drawVideo": "भिडियो कोर्नुहोस्",
-    "drawPose": "मुद्रा कोर्नुहोस्",
     "drawSignWriting": "साइन लेखन कोर्नुहोस्",
-    "animatePose": "एनिमेट पोज",
     "poseViewer": {
       "pose": "कंकाल",
       "avatar": "अवतार",

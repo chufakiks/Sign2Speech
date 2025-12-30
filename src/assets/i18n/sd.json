@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "سڃاڻپ جي نشاني",
     "drawVideo": "وڊيو ٺاھيو",
-    "drawPose": "نقشو ٺاھيو",
     "drawSignWriting": "ڊرائنگ سائن لکڻ",
-    "animatePose": "متحرڪ پوزيشن",
     "poseViewer": {
       "pose": "ڍَڪُ",
       "avatar": "اوتار",

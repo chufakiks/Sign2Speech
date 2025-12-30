@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "نښه کشف کړئ",
     "drawVideo": "ویډیو رسم کړئ",
-    "drawPose": "پوز رسم کړئ",
     "drawSignWriting": "د لاسلیک لیکنه رسم کړئ",
-    "animatePose": "متحرک پوز",
     "poseViewer": {
       "pose": "کنکال",
       "avatar": "اوتار",

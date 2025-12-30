@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "ලකුණ හඳුනා ගන්න",
     "drawVideo": "වීඩියෝ ඇඳීම",
-    "drawPose": "ඉරියව්ව අඳින්න",
     "drawSignWriting": "අඳින්න අත්සන් ලිවීම",
-    "animatePose": "සජීවිකරණ ඉරියව්ව",
     "poseViewer": {
       "pose": "ඇටසැකිල්ල",
       "avatar": "අවතාරය",

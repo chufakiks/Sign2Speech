@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Greina merki",
     "drawVideo": "Teikna myndband",
-    "drawPose": "Draw Pose",
     "drawSignWriting": "Draw Sign Ritun",
-    "animatePose": "Hreyfanlegur stelling",
     "poseViewer": {
       "pose": "Beinagrind",
       "avatar": "Avatar",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Tanda Kesan",
     "drawVideo": "Lukis Video",
-    "drawPose": "Lukis Pose",
     "drawSignWriting": "Lukis Tulisan Tanda",
-    "animatePose": "Animasikan Pose",
     "poseViewer": {
       "pose": "Rangka",
       "avatar": "Avatar",

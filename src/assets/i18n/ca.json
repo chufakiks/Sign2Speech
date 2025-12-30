@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Senyal de detecció",
     "drawVideo": "Vídeo de dibuix",
-    "drawPose": "Dibuixa la postura",
     "drawSignWriting": "Dibuixa l'escriptura de signes",
-    "animatePose": "Posa animada",
     "poseViewer": {
       "pose": "Esquelet",
       "avatar": "Avatar",

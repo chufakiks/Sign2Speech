@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Thola Uphawu",
     "drawVideo": "Dweba Ividiyo",
-    "drawPose": "Dweba Ukuma",
     "drawSignWriting": "Dweba Ukubhalwa Kwezimpawu",
-    "animatePose": "I-Animate Pose",
     "poseViewer": {
       "pose": "Uhlaka lwamathambo",
       "avatar": "Isithombe",

@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detect Sign",
     "drawVideo": "Pagdrowing og Video",
-    "drawPose": "Pagdrowing og Pose",
     "drawSignWriting": "Pagdibuho sa Pagsulat sa Timailhan",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Kalabera",
       "avatar": "Avatar",

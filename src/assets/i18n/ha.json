@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Gano Alamar",
     "drawVideo": "Zana Bidiyo",
-    "drawPose": "Zana Matsayi",
     "drawSignWriting": "Zana Rubutun Alamar",
-    "animatePose": "Matsayi mai rai",
     "poseViewer": {
       "pose": "kwarangwal",
       "avatar": "Avatar",

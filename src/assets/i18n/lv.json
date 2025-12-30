@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Atklāt zīmi",
     "drawVideo": "Zīmēt video",
-    "drawPose": "Zīmēt poza",
     "drawSignWriting": "Zīmēt zīmju rakstīšana",
-    "animatePose": "Animēt poza",
     "poseViewer": {
       "pose": "Skelets",
       "avatar": "Iemiesojums",

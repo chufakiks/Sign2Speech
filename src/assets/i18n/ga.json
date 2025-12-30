@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Braith Comhartha",
     "drawVideo": "Tarraing Físeán",
-    "drawPose": "Tarraing Pose",
     "drawSignWriting": "Tarraing Scríobh Comhartha",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "creatlach",
       "avatar": "Avatar",

@@ -12,7 +12,7 @@ import {IonCheckbox, IonItem, IonList} from '@ionic/angular/standalone';
   imports: [TranslocoDirective, IonList, IonItem, IonCheckbox],
 })
 export class SettingsComponent extends BaseSettingsComponent implements OnInit {
-  availableSettings: Array<keyof SettingsStateModel> = ['detectSign', 'drawVideo', 'drawPose', 'drawSignWriting'];
+  availableSettings: Array<keyof SettingsStateModel> = ['detectSign', 'drawVideo', 'drawSignWriting'];
   settings = {};
 
   ngOnInit(): void {

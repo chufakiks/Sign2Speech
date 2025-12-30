@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Dziwani Chizindikiro",
     "drawVideo": "Jambulani Kanema",
-    "drawPose": "Jambulani Maonekedwe",
     "drawSignWriting": "Jambulani Kulemba kwa Chizindikiro",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Chigoba",
       "avatar": "Avatar",

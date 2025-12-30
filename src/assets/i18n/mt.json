@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Issib Sinjal",
     "drawVideo": "Iġbed Video",
-    "drawPose": "Iġbed Poża",
     "drawSignWriting": "Iġbed il-Kitba tas-Sinjali",
-    "animatePose": "Janima Poża",
     "poseViewer": {
       "pose": "Skeletru",
       "avatar": "Avatar",

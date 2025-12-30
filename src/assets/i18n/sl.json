@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Zaznaj znak",
     "drawVideo": "Risanje videa",
-    "drawPose": "Narišite pozo",
     "drawSignWriting": "Risanje znakovnega pisanja",
-    "animatePose": "Animirana poza",
     "poseViewer": {
       "pose": "Okostje",
       "avatar": "Avatar",

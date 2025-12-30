@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Белгисин аныктоо",
     "drawVideo": "Видео тартуу",
-    "drawPose": "Поза тартуу",
     "drawSignWriting": "Жазуу белгисин тартуу",
-    "animatePose": "Жандуу поза",
     "poseViewer": {
       "pose": "Скелет",
       "avatar": "Аватар",

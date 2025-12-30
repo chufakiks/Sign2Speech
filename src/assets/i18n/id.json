@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Deteksi Tanda",
     "drawVideo": "Menggambar Video",
-    "drawPose": "Menggambar Pose",
     "drawSignWriting": "Menggambar Tanda Menulis",
-    "animatePose": "Pose Animasi",
     "poseViewer": {
       "pose": "Kerangka",
       "avatar": "Avatar",

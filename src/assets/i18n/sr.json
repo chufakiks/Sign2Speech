@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Детецт Сигн",
     "drawVideo": "Драв Видео",
-    "drawPose": "Драв Посе",
     "drawSignWriting": "Цртање знакова",
-    "animatePose": "Анимате Посе",
     "poseViewer": {
       "pose": "Скелетон",
       "avatar": "Аватар",

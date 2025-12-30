@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Lemoha Letšoao",
     "drawVideo": "Thala Video",
-    "drawPose": "Draw Pose",
     "drawSignWriting": "Thala Mongolo oa Letšoao",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Skeleton",
       "avatar": "Avatar",

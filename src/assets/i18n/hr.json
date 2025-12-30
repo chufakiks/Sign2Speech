@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Otkrij znak",
     "drawVideo": "Nacrtaj video",
-    "drawPose": "Nacrtaj pozu",
     "drawSignWriting": "Crtanje znakovnog pisanja",
-    "animatePose": "Animirana poza",
     "poseViewer": {
       "pose": "Kostur",
       "avatar": "Avatar",

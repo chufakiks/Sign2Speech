@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Выявіць знак",
     "drawVideo": "Малюем відэа",
-    "drawPose": "Намалюйце позу",
     "drawSignWriting": "Намалюйце знак",
-    "animatePose": "Анімаваная поза",
     "poseViewer": {
       "pose": "Шкілет",
       "avatar": "Аватар",

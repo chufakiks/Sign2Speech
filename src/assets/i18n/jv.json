@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Ndeteksi Tandha",
     "drawVideo": "Nggambar Video",
-    "drawPose": "Nggambar Pose",
     "drawSignWriting": "Draw Sign Nulis",
-    "animatePose": "Animasi Pose",
     "poseViewer": {
       "pose": "Balung",
       "avatar": "Avatar",

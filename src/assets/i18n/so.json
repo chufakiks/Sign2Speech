@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Calaamadee calaamad",
     "drawVideo": "Sawir Video",
-    "drawPose": "Sawir Sawir",
     "drawSignWriting": "Sawir Qoraalka Saxeexa",
-    "animatePose": "Joogsiga noole",
     "poseViewer": {
       "pose": "Qalfoofka",
       "avatar": "Avatar",

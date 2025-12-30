@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Ziva Chiratidzo",
     "drawVideo": "Dhirowa Vhidhiyo",
-    "drawPose": "Draw Pose",
     "drawSignWriting": "Dhirowa Kunyora Masaini",
-    "animatePose": "Animate Pose",
     "poseViewer": {
       "pose": "Skeleton",
       "avatar": "Avatar",

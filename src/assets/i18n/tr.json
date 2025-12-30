@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "İşareti Algıla",
     "drawVideo": "Videoyu Çiz",
-    "drawPose": "Poz çiz",
     "drawSignWriting": "İşaret Yazısı çiz",
-    "animatePose": "Hareketli Poz",
     "poseViewer": {
       "pose": "iskelet",
       "avatar": "avatar",

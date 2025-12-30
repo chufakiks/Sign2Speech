@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "징후 감지",
     "drawVideo": "비디오 그리기",
-    "drawPose": "포즈 그리기",
     "drawSignWriting": "사인 쓰기 그리기",
-    "animatePose": "애니메이션 포즈",
     "poseViewer": {
       "pose": "해골",
       "avatar": "화신",

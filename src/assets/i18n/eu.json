@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Detektatu seinalea",
     "drawVideo": "Marraztu Bideoa",
-    "drawPose": "Marraztu Pose",
     "drawSignWriting": "Marraztu zeinu idazkera",
-    "animatePose": "Animatu Pose",
     "poseViewer": {
       "pose": "Hezurdura",
       "avatar": "Avatarra",

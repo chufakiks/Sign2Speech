@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "അടയാളം കണ്ടെത്തുക",
     "drawVideo": "വീഡിയോ വരയ്ക്കുക",
-    "drawPose": "പോസ് വരയ്ക്കുക",
     "drawSignWriting": "സൈൻ റൈറ്റിംഗ് വരയ്ക്കുക",
-    "animatePose": "ആനിമേറ്റ് പോസ്",
     "poseViewer": {
       "pose": "അസ്ഥികൂടം",
       "avatar": "അവതാർ",

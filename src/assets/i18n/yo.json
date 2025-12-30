@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "Wa Ami",
     "drawVideo": "Fa Fidio",
-    "drawPose": "Fa Iduro",
     "drawSignWriting": "Fa Ami kikọ",
-    "animatePose": "Iduro Animate",
     "poseViewer": {
       "pose": "Egungun",
       "avatar": "Afata",

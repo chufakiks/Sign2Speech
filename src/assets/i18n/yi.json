@@ -162,9 +162,7 @@
   "settings": {
     "detectSign": "דעטעקט צייכן",
     "drawVideo": "ציען ווידעא",
-    "drawPose": "ציען פּאָזע",
     "drawSignWriting": "ציען צייכן שרייבן",
-    "animatePose": "אַנימאַטע פּאָזע",
     "poseViewer": {
       "pose": "סקעלעט",
       "avatar": "אַוואַטאַר",
