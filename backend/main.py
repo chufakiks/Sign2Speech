@@ -5,19 +5,24 @@ Endpoints:
 - GET /api/health - Health check
 - POST /api/segment - Convert landmarks and run segmentation
 - POST /api/translate - Full pipeline: segment, transcribe, translate to text
+- POST /api/translate-spamo - SpaMo video-to-text translation
 """
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 import logging
 import tempfile
 import os
+import base64
+import io
+from PIL import Image
 
 from pose_converter import frames_to_pose
 from segmentation_service import segment
 from translation_service import translate_signs
+from spamo_service import translate_frames as spamo_translate
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -112,6 +117,20 @@ class TranslateResponse(BaseModel):
     full_text: str
     frame_count: int
     duration: float
+
+
+class SpaMoRequest(BaseModel):
+    frames: List[str]  # Base64 encoded images
+    fps: float = 25.0
+    target_language: str = "German"  # SpaMo trained on Phoenix14T (German)
+
+
+class SpaMoResponse(BaseModel):
+    translation: str
+    frame_count: int
+    spatial_features_shape: List[int]
+    motion_features_shape: List[int]
+    target_language: str
 
 
 @app.get("/api/health")
@@ -317,6 +336,69 @@ async def translate_endpoint(request: TranslateRequest):
     except Exception as e:
         logger.error(f"Translation failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Translation failed: {str(e)}")
+
+
+@app.post("/api/translate-spamo", response_model=SpaMoResponse)
+async def translate_spamo_endpoint(request: SpaMoRequest):
+    """
+    SpaMo video-to-text translation.
+
+    Accepts base64-encoded video frames and returns German text translation.
+    Uses CLIP ViT for spatial features and VideoMAE for motion features.
+    """
+    if not request.frames:
+        raise HTTPException(status_code=400, detail="No frames provided")
+
+    if len(request.frames) < 10:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Too few frames ({len(request.frames)}). Need at least 10 frames for translation."
+        )
+
+    logger.info(f"Received SpaMo translation request: {len(request.frames)} frames, {request.fps}fps")
+
+    try:
+        # Decode base64 frames to PIL Images
+        pil_frames = []
+        for i, frame_b64 in enumerate(request.frames):
+            try:
+                # Handle data URL format (data:image/jpeg;base64,...)
+                if ',' in frame_b64:
+                    frame_b64 = frame_b64.split(',')[1]
+
+                frame_bytes = base64.b64decode(frame_b64)
+                img = Image.open(io.BytesIO(frame_bytes)).convert('RGB')
+                pil_frames.append(img)
+            except Exception as e:
+                logger.error(f"Failed to decode frame {i}: {e}")
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Failed to decode frame {i}: {str(e)}"
+                )
+
+        logger.info(f"Decoded {len(pil_frames)} frames successfully")
+
+        # Run SpaMo translation
+        result = spamo_translate(pil_frames, request.target_language)
+
+        if 'error' in result:
+            raise HTTPException(status_code=400, detail=result['error'])
+
+        logger.info(f"SpaMo translation complete: {result['translation']}")
+
+        return SpaMoResponse(
+            translation=result['translation'],
+            frame_count=result['frame_count'],
+            spatial_features_shape=result['spatial_features_shape'],
+            motion_features_shape=result['motion_features_shape'],
+            target_language=result['target_language']
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"SpaMo translation failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"SpaMo translation failed: {str(e)}")
 
 
 if __name__ == "__main__":
