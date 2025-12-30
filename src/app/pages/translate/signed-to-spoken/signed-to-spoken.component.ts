@@ -6,7 +6,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {IonButton, IonIcon} from '@ionic/angular/standalone';
 import {TextToSpeechComponent} from '../../../components/text-to-speech/text-to-speech.component';
 import {addIcons} from 'ionicons';
-import {copyOutline, bodyOutline} from 'ionicons/icons';
+import {copyOutline} from 'ionicons/icons';
 import {TranslocoPipe} from '@jsverse/transloco';
 import {AsyncPipe} from '@angular/common';
 import {VideoModule} from '../../../components/video/video.module';
@@ -31,15 +31,10 @@ export class SignedToSpokenComponent {
   private store = inject(Store);
 
   spokenLanguageText$: Observable<string>;
-  showPose = true;
 
   constructor() {
     this.spokenLanguageText$ = this.store.select<string>(state => state.translate.spokenLanguageText);
-    addIcons({copyOutline, bodyOutline});
-  }
-
-  togglePose() {
-    this.showPose = !this.showPose;
+    addIcons({copyOutline});
   }
 
   copyTranslation() {
