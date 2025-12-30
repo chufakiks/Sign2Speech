@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {EstimatedPose} from '../pose/pose.state';
 import {StoreFramePose} from '../pose/pose.actions';
 import {RecordingService, RecordingState, TranslationResult} from '../../services/recording.service';
+import {SettingsStateModel} from '../settings/settings.state';
 
 export interface TranslateStateModel {
   spokenLanguageText: string;
@@ -76,10 +77,21 @@ export class TranslateState implements NgxsOnInit {
     console.log('⏸️  Recording stopped, processing...');
     patchState({recordingState: 'processing'});
 
-    const result = await this.recordingService.stopRecording();
+    // Get the translation mode from settings
+    const settings = this.store.selectSnapshot<SettingsStateModel>(state => state.settings);
+    const useSpaMo = settings.translationMode === 'spamo';
+
+    let result: TranslationResult | null;
+    if (useSpaMo) {
+      console.log('🎬 Using SpaMo translation mode');
+      result = await this.recordingService.stopRecordingSpaMo();
+    } else {
+      console.log('✍️  Using SignWriting translation mode');
+      result = await this.recordingService.stopRecording();
+    }
 
     if (result) {
-      console.log('✅ Segmentation complete!', {
+      console.log('✅ Translation complete!', {
         frameCount: result.frame_count,
         duration: `${result.duration.toFixed(2)}s`,
         signsDetected: result.signs.length,
@@ -95,7 +107,7 @@ export class TranslateState implements NgxsOnInit {
         recordingError: null,
       });
     } else {
-      const error = 'Segmentation failed or recording too short';
+      const error = 'Translation failed or recording too short';
       console.error('❌', error);
       patchState({
         recordingState: 'idle',
