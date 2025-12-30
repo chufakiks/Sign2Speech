@@ -5,19 +5,19 @@ import {StartCamera} from '../../core/modules/ngxs/store/video/video.actions';
 import {Observable} from 'rxjs';
 import {EstimatedPose} from '../pose/pose.state';
 import {StoreFramePose} from '../pose/pose.actions';
-import {RecordingService, RecordingState, SegmentationResult} from '../../services/recording.service';
+import {RecordingService, RecordingState, TranslationResult} from '../../services/recording.service';
 
 export interface TranslateStateModel {
   spokenLanguageText: string;
   recordingState: RecordingState;
-  segmentationResult: SegmentationResult | null;
+  translationResult: TranslationResult | null;
   recordingError: string | null;
 }
 
 const initialState: TranslateStateModel = {
   spokenLanguageText: '',
   recordingState: 'idle',
-  segmentationResult: null,
+  translationResult: null,
   recordingError: null,
 };
 
@@ -66,7 +66,7 @@ export class TranslateState implements NgxsOnInit {
     this.recordingService.startRecording();
     patchState({
       recordingState: 'recording',
-      segmentationResult: null,
+      translationResult: null,
       recordingError: null,
     });
   }
@@ -90,7 +90,8 @@ export class TranslateState implements NgxsOnInit {
 
       patchState({
         recordingState: 'idle',
-        segmentationResult: result,
+        translationResult: result,
+        spokenLanguageText: result.full_text,
         recordingError: null,
       });
     } else {
@@ -108,7 +109,7 @@ export class TranslateState implements NgxsOnInit {
     this.recordingService.cancelRecording();
     patchState({
       recordingState: 'idle',
-      segmentationResult: null,
+      translationResult: null,
       recordingError: null,
     });
   }
