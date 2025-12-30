@@ -17,3 +17,11 @@ dependencies:
       - sign-language-segmentation @ git+https://github.com/sign-language-processing/segmentation
       - signwriting-transcription[pose_to_signwriting] @ git+https://github.com/sign-language-processing/signwriting-transcription
       - signwriting-translation @ git+https://github.com/sign-language-processing/signwriting-translation
+      # SpaMo dependencies
+      - transformers>=4.32.0
+      - peft>=0.7.1
+      - einops>=0.8.1
+      - omegaconf
+      - pytorch-lightning>=1.9.5
+      - sacrebleu>=2.2.0
+      - rouge-score
