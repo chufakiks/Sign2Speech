@@ -69,9 +69,11 @@ def _extract_segments(segments: list, fps: float) -> list[dict]:
     result = []
 
     for segment in segments:
-        # Segments may be tuples of (start, end) or have other formats
-        # Handle common formats from the segmentation library
-        if isinstance(segment, (tuple, list)) and len(segment) >= 2:
+        # Segments are dictionaries with 'start' and 'end' keys
+        if isinstance(segment, dict) and 'start' in segment and 'end' in segment:
+            start_frame = int(segment['start'])
+            end_frame = int(segment['end'])
+        elif isinstance(segment, (tuple, list)) and len(segment) >= 2:
             start_frame = int(segment[0])
             end_frame = int(segment[1])
         elif hasattr(segment, 'start') and hasattr(segment, 'end'):

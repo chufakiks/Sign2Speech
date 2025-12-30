@@ -10,6 +10,7 @@ dependencies:
   - uvicorn>=0.20.0
   - pytorch
   - pip:
+      - mediapipe==0.10.5
       - pose-format>=0.3.2
       - uvicorn[standard]>=0.20.0
       - sign-language-segmentation @ git+https://github.com/sign-language-processing/segmentation
