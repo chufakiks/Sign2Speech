@@ -1,0 +1,7 @@
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+pose-format>=0.3.2
+numpy<2.0.0
+torch
+pydantic>=2.0.0
+sign-language-segmentation @ git+https://github.com/sign-language-processing/segmentation
