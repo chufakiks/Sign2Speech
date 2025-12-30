@@ -53,7 +53,7 @@ class ViTFeatureExtractor:
 
     def __init__(
         self,
-        model_name: str = 'openai/clip-vit-base-patch32',
+        model_name: str = 'openai/clip-vit-large-patch14',
         device: str = 'cpu',
         scales: List[int] = [1, 2],
         nth_layer: int = -1
@@ -109,7 +109,7 @@ class VideoMAEFeatureExtractor:
 
     def __init__(
         self,
-        model_name: str = 'MCG-NJU/videomae-base',
+        model_name: str = 'MCG-NJU/videomae-large',
         device: str = 'cpu',
         overlap_size: int = 8,
         nth_layer: int = -1
