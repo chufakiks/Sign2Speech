@@ -11,6 +11,24 @@ export interface SegmentBoundary {
   end_time: number;
 }
 
+export interface TranslatedSign {
+  start_frame: number;
+  end_frame: number;
+  start_time: number;
+  end_time: number;
+  signwriting: string;
+  text: string;
+}
+
+export interface TranslationResult {
+  signs: TranslatedSign[];
+  sentences: SegmentBoundary[];
+  full_text: string;
+  frame_count: number;
+  duration: number;
+}
+
+// Keep old interface for backward compatibility
 export interface SegmentationResult {
   signs: SegmentBoundary[];
   sentences: SegmentBoundary[];
@@ -49,7 +67,7 @@ export class RecordingService {
 
   private frames: EstimatedPose[] = [];
   private recordingState$ = new BehaviorSubject<RecordingState>('idle');
-  private segmentationResult$ = new BehaviorSubject<SegmentationResult | null>(null);
+  private translationResult$ = new BehaviorSubject<TranslationResult | null>(null);
   private error$ = new BehaviorSubject<string | null>(null);
 
   private recordingStartTime = 0;
@@ -59,8 +77,8 @@ export class RecordingService {
     return this.recordingState$.asObservable();
   }
 
-  get result$(): Observable<SegmentationResult | null> {
-    return this.segmentationResult$.asObservable();
+  get result$(): Observable<TranslationResult | null> {
+    return this.translationResult$.asObservable();
   }
 
   get error(): Observable<string | null> {
@@ -85,7 +103,7 @@ export class RecordingService {
     }
 
     this.frames = [];
-    this.segmentationResult$.next(null);
+    this.translationResult$.next(null);
     this.error$.next(null);
     this.recordingStartTime = Date.now();
     this.recordingState$.next('recording');
@@ -99,7 +117,7 @@ export class RecordingService {
     this.frames.push(pose);
   }
 
-  async stopRecording(): Promise<SegmentationResult | null> {
+  async stopRecording(): Promise<TranslationResult | null> {
     if (this.recordingState$.value !== 'recording') {
       return null;
     }
@@ -116,12 +134,12 @@ export class RecordingService {
     this.recordingState$.next('processing');
 
     try {
-      const result = await this.sendForSegmentation();
-      this.segmentationResult$.next(result);
+      const result = await this.sendForTranslation();
+      this.translationResult$.next(result);
       this.recordingState$.next('idle');
       return result;
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : 'Segmentation failed';
+      const errorMessage = e instanceof Error ? e.message : 'Translation failed';
       this.error$.next(errorMessage);
       this.recordingState$.next('idle');
       return null;
@@ -134,13 +152,21 @@ export class RecordingService {
     this.error$.next(null);
   }
 
-  private async sendForSegmentation(): Promise<SegmentationResult> {
+  private async sendForTranslation(): Promise<TranslationResult> {
     const payload = this.buildPayload();
     const backendUrl = environment.backendUrl || 'http://localhost:8000';
 
-    console.log(`📤 Sending ${payload.frames.length} frames to ${backendUrl}/api/segment`);
-    const result = await firstValueFrom(this.http.post<SegmentationResult>(`${backendUrl}/api/segment`, payload));
-    console.log('📥 Received segmentation result from backend');
+    console.log(`📤 Sending ${payload.frames.length} frames to ${backendUrl}/api/translate`);
+    const result = await firstValueFrom(this.http.post<TranslationResult>(`${backendUrl}/api/translate`, payload));
+
+    console.log('📥 Translation result:');
+    console.log(`   Signs: ${result.signs.length}`);
+    result.signs.forEach((sign, i) => {
+      console.log(`   ${i + 1}. "${sign.text}" (${sign.start_time}s - ${sign.end_time}s)`);
+      console.log(`      SignWriting: ${sign.signwriting}`);
+    });
+    console.log(`   Full text: "${result.full_text}"`);
+
     return result;
   }
 
