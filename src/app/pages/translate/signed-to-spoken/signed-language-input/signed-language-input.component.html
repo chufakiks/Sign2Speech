@@ -1,17 +1,12 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
-    <app-upload [isMobile]="true" />
-  </ion-buttons>
-
-  <ion-title>
-    <ion-fab-button color="danger">
-      <ion-icon name="ellipse-outline" />
-    </ion-fab-button>
-  </ion-title>
-
-  <ion-buttons slot="end">
-    <ion-button>
-      <ion-icon name="camera-reverse-outline" slot="icon-only" />
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
+@if ((recordingState$ | async) === 'processing') {
+  <ion-spinner name="crescent" color="primary" />
+} @else {
+  <ion-fab-button
+    size="small"
+    [color]="(recordingState$ | async) === 'recording' ? 'warning' : 'danger'"
+    (click)="onRecordClick()"
+    [matTooltip]="(recordingState$ | async) === 'recording' ? 'Stop recording' : 'Start recording'"
+    [matTooltipPosition]="'above'">
+    <ion-icon [name]="(recordingState$ | async) === 'recording' ? 'stop-outline' : 'ellipse-outline'" />
+  </ion-fab-button>
+}

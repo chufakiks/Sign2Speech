@@ -1,17 +1,14 @@
-ion-toolbar {
-  --background: transparent;
-  height: 5em;
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-ion-title {
-  text-align: center;
+ion-fab-button {
+  --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 
-  ion-fab-button {
-    margin: auto;
-    --box-shadow: none;
-
-    ion-icon {
-      font-size: 5em;
-    }
-  }
+ion-spinner {
+  width: 40px;
+  height: 40px;
 }
