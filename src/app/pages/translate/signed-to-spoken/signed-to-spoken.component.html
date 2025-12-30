@@ -1,3 +1,14 @@
+<div class="translation-mode-selector">
+  <ion-segment [value]="translationMode$ | async" (ionChange)="onModeChange($event)">
+    <ion-segment-button value="signwriting">
+      <ion-label>SignWriting</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="spamo">
+      <ion-label>SpaMo</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
 <div class="interface">
   <div class="sign-language">
     <app-video [displayControls]="false" [displayFps]="false" />
@@ -5,17 +16,6 @@
     <div class="video-controls">
       <app-signed-language-input />
     </div>
-  </div>
-
-  <div class="translation-mode-selector">
-    <ion-segment [value]="translationMode$ | async" (ionChange)="onModeChange($event)">
-      <ion-segment-button value="signwriting">
-        <ion-label>SignWriting</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="spamo">
-        <ion-label>SpaMo</ion-label>
-      </ion-segment-button>
-    </ion-segment>
   </div>
 
   <div class="translation-output">
