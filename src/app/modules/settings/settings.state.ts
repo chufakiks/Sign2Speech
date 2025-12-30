@@ -3,6 +3,7 @@ import {Action, State, StateContext} from '@ngxs/store';
 import {SetSetting} from './settings.actions';
 
 export type PoseViewerSetting = 'pose' | 'person';
+export type TranslationModeSetting = 'signwriting' | 'spamo';
 
 export interface SettingsStateModel {
   receiveVideo: boolean;
@@ -15,6 +16,7 @@ export interface SettingsStateModel {
   appearance: string;
 
   poseViewer: PoseViewerSetting;
+  translationMode: TranslationModeSetting;
 }
 
 const initialState: SettingsStateModel = {
@@ -26,6 +28,7 @@ const initialState: SettingsStateModel = {
   drawSignWriting: false,
 
   poseViewer: 'pose',
+  translationMode: 'signwriting',
 
   appearance: '#ffffff',
 };
