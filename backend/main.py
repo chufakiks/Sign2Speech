@@ -26,10 +26,24 @@ app = FastAPI(
 )
 
 # CORS configuration for Angular dev server
+# Allow localhost and common local network ranges for development
+allowed_origins = [
+    "http://localhost:4200",
+    "http://localhost:4000",
+    "http://127.0.0.1:4200",
+    "http://127.0.0.1:4000",
+]
+
+# Allow local network IPs (192.168.x.x) for development
+# In production, replace this with specific allowed domains
+import re
+def is_local_network(origin: str) -> bool:
+    return bool(re.match(r"^http://(192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}):\d+$", origin))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins in development
-    allow_credentials=False,  # Must be False when allow_origins is "*"
+    allow_origin_regex=r"^http://(localhost|127\.0\.0\.1|192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}):\d+$",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
