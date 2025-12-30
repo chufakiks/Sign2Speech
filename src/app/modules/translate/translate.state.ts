@@ -1,18 +1,24 @@
 import {inject, Injectable} from '@angular/core';
 import {Action, NgxsOnInit, State, StateContext, Store} from '@ngxs/store';
-import {CopySpokenLanguageText} from './translate.actions';
+import {CopySpokenLanguageText, StartRecording, StopRecording, CancelRecording} from './translate.actions';
 import {StartCamera} from '../../core/modules/ngxs/store/video/video.actions';
 import {Observable} from 'rxjs';
 import {EstimatedPose} from '../pose/pose.state';
 import {StoreFramePose} from '../pose/pose.actions';
-import {PoseService} from '../pose/pose.service';
+import {RecordingService, RecordingState, SegmentationResult} from '../../services/recording.service';
 
 export interface TranslateStateModel {
   spokenLanguageText: string;
+  recordingState: RecordingState;
+  segmentationResult: SegmentationResult | null;
+  recordingError: string | null;
 }
 
 const initialState: TranslateStateModel = {
   spokenLanguageText: '',
+  recordingState: 'idle',
+  segmentationResult: null,
+  recordingError: null,
 };
 
 @Injectable()
@@ -22,7 +28,7 @@ const initialState: TranslateStateModel = {
 })
 export class TranslateState implements NgxsOnInit {
   private store = inject(Store);
-  private poseService = inject(PoseService);
+  private recordingService = inject(RecordingService);
 
   pose$!: Observable<EstimatedPose>;
 
@@ -47,10 +53,50 @@ export class TranslateState implements NgxsOnInit {
   }
 
   @Action(StoreFramePose)
-  storePose({getState, patchState}: StateContext<TranslateStateModel>, {pose}: StoreFramePose): void {
-    const components = ['poseLandmarks', 'faceLandmarks', 'leftHandLandmarks', 'rightHandLandmarks'];
-    const normalizedPoseFrame = this.poseService.normalizeHolistic(pose, components);
+  storePose(_ctx: StateContext<TranslateStateModel>, {pose}: StoreFramePose): void {
+    // If recording, add frame to the recording buffer
+    if (this.recordingService.isRecording) {
+      this.recordingService.addFrame(pose);
+    }
+  }
 
-    // TODO: Process pose for ASL recognition
+  @Action(StartRecording)
+  startRecording({patchState}: StateContext<TranslateStateModel>): void {
+    this.recordingService.startRecording();
+    patchState({
+      recordingState: 'recording',
+      segmentationResult: null,
+      recordingError: null,
+    });
+  }
+
+  @Action(StopRecording)
+  async stopRecording({patchState}: StateContext<TranslateStateModel>): Promise<void> {
+    patchState({recordingState: 'processing'});
+
+    const result = await this.recordingService.stopRecording();
+
+    if (result) {
+      patchState({
+        recordingState: 'idle',
+        segmentationResult: result,
+        recordingError: null,
+      });
+    } else {
+      patchState({
+        recordingState: 'idle',
+        recordingError: 'Segmentation failed or recording too short',
+      });
+    }
+  }
+
+  @Action(CancelRecording)
+  cancelRecording({patchState}: StateContext<TranslateStateModel>): void {
+    this.recordingService.cancelRecording();
+    patchState({
+      recordingState: 'idle',
+      segmentationResult: null,
+      recordingError: null,
+    });
   }
 }
