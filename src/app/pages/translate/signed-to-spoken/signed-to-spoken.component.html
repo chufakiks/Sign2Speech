@@ -1,5 +1,6 @@
 <div class="container">
   <div class="translation-mode-selector">
+    <span class="model-label">Choose model</span>
     <ion-segment [value]="translationMode$ | async" (ionChange)="onModeChange($event)">
       <ion-segment-button value="signwriting">
         <ion-label>SignWriting</ion-label>
