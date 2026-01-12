@@ -11,7 +11,7 @@ on:
     branches: [main, master]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -31,34 +31,11 @@ jobs:
       - name: Build project
         run: bun run build
 
-      - name: Zip dist
-        run: zip -r dist/sign-translate/browser.zip dist/sign-translate/browser/
-
-      - name: Archive dist
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-dist
-          path: dist/sign-translate/browser.zip
-          retention-days: 1
-
-  website-deploy:
-    name: Deploy to Firebase
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download built dist artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: build-dist
-          path: .
-
-      - name: Unzip dist
-        run: unzip browser.zip
+      - name: List build output
+        run: ls -la dist/sign-translate/browser/ | head -20
 
       - name: Deploy Live Channel 🚀
+        if: github.ref == 'refs/heads/master'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
