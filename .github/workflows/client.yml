@@ -64,4 +64,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIGN_MT }}
           channelId: live
-          projectId: sign-mt
+          projectId: sign2speech-3de59
