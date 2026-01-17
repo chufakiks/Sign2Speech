@@ -5,7 +5,7 @@ To use the webapp, install npm if not installed yet.
 Build frontend:
 
 ```
-npm run build
+npm run start
 ```
 
 Build backend. First download SpaMo checkpoint and put it in the backend folder. https://www.dropbox.com/scl/fi/c9khflgxgl96lx919p6oq/spamo.ckpt?rlkey=gp3zmk6jwg9cnf3e2hpw268ih&st=m2mteopt&dl=0
